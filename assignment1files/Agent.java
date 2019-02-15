@@ -6,7 +6,7 @@ import java.awt.Color;
  *  otherwise chooseMove() will get stuck in an infinite loop.
  *	Author: Simon Dixon
  **/
-class RandomPlayer extends GomokuPlayer {
+class Agent extends GomokuPlayer {
 
     public Move chooseMove(Color[][] board, Color me) {
         while (true) {
