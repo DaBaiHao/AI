@@ -43,7 +43,7 @@ class Agent extends GomokuPlayer {
 
 
 
-    
+
     public static int get_value(Color[][] board, int row, int col, Color me){
         int value = 0;
         if(col + 1 < 8){//right
