@@ -35,12 +35,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="3221" />
+          <entry key="java" value="3393" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="3221" />
+          <entry key="JAVA" value="3393" />
         </counts>
       </usages-collector>
     </session>
@@ -68,8 +68,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Agent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="432" column="30" lean-forward="true" selection-start-line="432" selection-start-column="30" selection-end-line="432" selection-end-column="30" />
+            <state relative-caret-position="285">
+              <caret line="425" column="60" selection-start-line="425" selection-start-column="60" selection-end-line="425" selection-end-column="60" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#is_Game_Over#0;class#Agent#0" />
@@ -77,8 +77,20 @@
                 <element signature="method#calculate_score#0;class#Agent#0" />
                 <element signature="method#generate#0;class#Agent#0" />
                 <element signature="e#10696#10703#0" expanded="true" />
-                <element signature="method#min#0;class#Agent#0" />
                 <element signature="method#max#0;class#Agent#0" />
+                <element signature="method#alpha_beta_search#0;class#Agent#0" />
+                <element signature="method#search_down_left#0;class#Agent#0" />
+                <element signature="method#search_up_left#0;class#Agent#0" />
+                <element signature="method#search_up_right#0;class#Agent#0" />
+                <element signature="method#get_value_forOther#0;class#Agent#0" />
+                <element signature="method#search_up_forOthers#0;class#Agent#0" />
+                <element signature="method#search_down_forOther#0;class#Agent#0" />
+                <element signature="method#search_right_forOther#0;class#Agent#0" />
+                <element signature="method#search_left_forOthers#0;class#Agent#0" />
+                <element signature="method#search_down_right_forOther#0;class#Agent#0" />
+                <element signature="method#search_down_left_forOthers#0;class#Agent#0" />
+                <element signature="method#search_up_left_forOthers#0;class#Agent#0" />
+                <element signature="method#search_up_right_fotOthers#0;class#Agent#0" />
               </folding>
             </state>
           </provider>
@@ -167,7 +179,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550404309313" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550412274008" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -199,12 +211,12 @@
       <workItem from="1550242371042" duration="149000" />
       <workItem from="1550243486722" duration="707000" />
       <workItem from="1550266014161" duration="9457000" />
-      <workItem from="1550314736376" duration="29285000" />
+      <workItem from="1550314736376" duration="32901000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39598000" />
+    <option name="totallyTimeSpent" value="43214000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
@@ -290,8 +302,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Agent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="432" column="30" lean-forward="true" selection-start-line="432" selection-start-column="30" selection-end-line="432" selection-end-column="30" />
+        <state relative-caret-position="285">
+          <caret line="425" column="60" selection-start-line="425" selection-start-column="60" selection-end-line="425" selection-end-column="60" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#is_Game_Over#0;class#Agent#0" />
@@ -299,8 +311,20 @@
             <element signature="method#calculate_score#0;class#Agent#0" />
             <element signature="method#generate#0;class#Agent#0" />
             <element signature="e#10696#10703#0" expanded="true" />
-            <element signature="method#min#0;class#Agent#0" />
             <element signature="method#max#0;class#Agent#0" />
+            <element signature="method#alpha_beta_search#0;class#Agent#0" />
+            <element signature="method#search_down_left#0;class#Agent#0" />
+            <element signature="method#search_up_left#0;class#Agent#0" />
+            <element signature="method#search_up_right#0;class#Agent#0" />
+            <element signature="method#get_value_forOther#0;class#Agent#0" />
+            <element signature="method#search_up_forOthers#0;class#Agent#0" />
+            <element signature="method#search_down_forOther#0;class#Agent#0" />
+            <element signature="method#search_right_forOther#0;class#Agent#0" />
+            <element signature="method#search_left_forOthers#0;class#Agent#0" />
+            <element signature="method#search_down_right_forOther#0;class#Agent#0" />
+            <element signature="method#search_down_left_forOthers#0;class#Agent#0" />
+            <element signature="method#search_up_left_forOthers#0;class#Agent#0" />
+            <element signature="method#search_up_right_fotOthers#0;class#Agent#0" />
           </folding>
         </state>
       </provider>

@@ -16,7 +16,10 @@ class Agent extends GomokuPlayer {
     public Point bestMove;
 
     private int depth;
-
+    public int MIN;
+    public int MAX;
+    public int total = 0;
+    public int ABcut = 0;
     // private final int[][] history;
 
 
@@ -44,34 +47,34 @@ class Agent extends GomokuPlayer {
                 return new Move(i, j);
             }
 
-
-
-
-            // from here
-            int list_my_value[][] = new int[8][8];
-            int list_other_value[][] = new int[8][8];
-            // initialization
-            for(int i = 0;i<8;i++ ){
-                for(int j = 0;j<8;j++ ){
-                    list_my_value[i][j] = 0;
-                    list_other_value[i][j] = 0;
-                }
-            }
-            // search all board
-            for(int i = 0;i<8;i++ ){
-                for(int j = 0;j<8;j++ ){
-                    if (board[row][col] == null){
-                        list_my_value[i][j] = get_value(board,i,j,me);
-                        list_other_value[i][j] = get_value_forOther(board,i,j,me);
-                    }
-                }
-            }
-
-
-
-
-            if (board[row][col] == null)			// is the square vacant?
-                return new Move(row, col);
+            Point best = minmax(board,me,4,1000,1);
+            return new Move(best.x, best.y);
+//
+//            // from here
+//            int list_my_value[][] = new int[8][8];
+//            int list_other_value[][] = new int[8][8];
+//            // initialization
+//            for(int i = 0;i<8;i++ ){
+//                for(int j = 0;j<8;j++ ){
+//                    list_my_value[i][j] = 0;
+//                    list_other_value[i][j] = 0;
+//                }
+//            }
+//            // search all board
+//            for(int i = 0;i<8;i++ ){
+//                for(int j = 0;j<8;j++ ){
+//                    if (board[row][col] == null){
+//                        list_my_value[i][j] = get_value(board,i,j,me);
+//                        list_other_value[i][j] = get_value_forOther(board,i,j,me);
+//                    }
+//                }
+//            }
+//
+//
+//
+//
+//            if (board[row][col] == null)			// is the square vacant?
+//                return new Move(row, col);
         }
     } // chooseMove()
 
@@ -241,10 +244,7 @@ class Agent extends GomokuPlayer {
 
     }
 
-    public static int alpha_beta(Color[][] board,int alpha,int beta,int depth, Color me){
 
-        return 0;
-    }
     public static int valuation_function(Color[][] board, Color me){
         int score_us=0;
         int score_other=0;
@@ -415,7 +415,7 @@ class Agent extends GomokuPlayer {
         return available;
     }
     public static Point minmax(Color[][] board, Color me,int deep,int alpha,int beta){
-        int best = MIN
+        int best = 1;
         ArrayList<Point> available = generate(board);
         ArrayList<Point> bestPoints = generate(board);
 
@@ -423,7 +423,7 @@ class Agent extends GomokuPlayer {
             Point point = available.get(i);
             // try
             board[point.x][point.y] = me;
-            int value = min(board, me,deep-1, alpha,beta);     //找最大值
+            int value = min(board, me,deep-1, alpha,beta);     //find max value
             // if find a good one same as before
             if(value == best) {
                 bestPoints.add(point);
@@ -431,20 +431,26 @@ class Agent extends GomokuPlayer {
 
             // if find a good one
             if(value > best) {
+                // clear all
                 bestPoints.clear();
                 bestPoints.add(point);
             }
+            board[point.x][point.y] = null;
+
         }
+
+        Point best_Point = bestPoints.get(((int)(bestPoints.size() * Math.random())));
+        return best_Point;
     }
 
     public static int min(Color[][] board, Color me,int deep,int alpha,int beta){
         int value = valuation_function(board, me);
         // win , may need change
-        total ++;
+        //total ++;
         if(deep <= 0|| value>90000){
             return value;
         }
-        int best = MAX;
+        int best = 1000;
 
         Color temp;
         if(me == Color.white){
@@ -465,7 +471,7 @@ class Agent extends GomokuPlayer {
                 best = value;
             }
             if(value < beta){
-                ABcut++;
+                //ABcut++;
                 break;
             }
         }
@@ -474,11 +480,11 @@ class Agent extends GomokuPlayer {
 
     public static int max(Color[][] board, Color me,int deep,int alpha,int beta){
         int value = valuation_function(board, me);
-        total ++;
+        //total ++;
         if(deep <= 0|| value>90000){
             return value;
         }
-        int best = MAX;
+        int best = 1000;
         ArrayList<Point> available = generate(board);
         for(var i=0;i<available.size();i++) {
             Point point = available.get(i);
@@ -489,7 +495,7 @@ class Agent extends GomokuPlayer {
                 best = value;
             }
             if(value > alpha) { //AB 剪枝
-                ABcut ++;
+                //ABcut ++;
                 break;
             }
 
