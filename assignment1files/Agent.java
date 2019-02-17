@@ -1,6 +1,6 @@
 
-import java.awt.Color;
-import java.awt.Point;
+import java.awt.*;
+import java.util.ArrayList;
 
 
 /** The random gomoku player chooses random squares on the board (using a
@@ -76,11 +76,13 @@ class Agent extends GomokuPlayer {
     } // chooseMove()
 
     public static int is_Game_Over(Color[][] board, Color me){
-        // 0 draw
+        // 0 not over
         // 1 we win
         // 2 we loss
-        int is_Game_Over = 0;
+        // 3 draw
+        //int is_Game_Over = 0;
         Color color;
+        int empty_number = 0;
         for(int i = 0;i<8;i++ ){
             for(int j = 0;j<8;j++ ){
                 if(board[i][j] != null){
@@ -224,18 +226,208 @@ class Agent extends GomokuPlayer {
                             }
                         }
                     }
+                }else {
+                    empty_number++;
+                }
+            }
+        }
+        // draw
+        if(empty_number <= 1){
+            return 3;
+        }else {
+            // not over
+            return 0;
+        }
+
+    }
+
+    public static int alpha_beta(Color[][] board,int alpha,int beta,int depth, Color me){
+
+        return 0;
+    }
+    public static int valuation_function(Color[][] board, Color me){
+        int score_us=0;
+        int score_other=0;
+        int winner = is_Game_Over(board, me);
+        if (winner ==1 ){
+            score_us += 100000;
+        }else if(winner == 2){
+            score_other += 100000;
+        }
+
+
+        for(int i=0;i<8;i++){
+            int sum_us=0;
+            boolean is_me_side = false;
+            int sum_other=0;
+            boolean is_other_side = false;
+            for(int j=0;j<8;j++) {
+                if (board[i][j] == me) {
+
+                    sum_us += 1;
+                    if (i == 0 || j == 0 || i == 7 || j == 7) {
+                        is_me_side = true;
+                    }
+                } else if (board[i][j] != me && board[i][j] != null) {
+                    sum_other += 1;
+                    if (i == 0 || j == 0 || i == 7 || j == 7) {
+                        is_other_side = true;
+                    }
+                } else {
+                    if(sum_us != 0){
+                        score_us += 1;
+                        sum_us = 0;
+                        is_me_side = false;
+                    }
+                    if(sum_other != 0){
+                        score_other += 1;
+                        sum_other = 0;
+                        is_other_side = false;
+                    }
+
+                }
+
+                //us
+                score_us +=calculate_score(sum_us,is_me_side);
+                //other
+                score_other +=calculate_score(sum_other,is_other_side);
+            }
+            sum_us=0;
+            is_me_side = false;
+            sum_other=0;
+            is_other_side = false;
+            // up to down, xie
+            for(int j=0;i+j< 8;j++){
+                if (board[i+j][j] == me) {
+
+                    sum_us += 1;
+                    if (i+j == 0 || j == 0 || i+j == 7 || j == 7) {
+                        is_me_side = true;
+                    }
+                } else if (board[i+j][j] != me && board[i+j][j] != null) {
+                    sum_other += 1;
+                    if (i+j == 0 || j == 0 || i+j == 7 || j == 7) {
+                        is_other_side = true;
+                    }
+                } else {
+                    if(sum_us != 0){
+                        score_us += 1;
+                        sum_us = 0;
+                        is_me_side = false;
+                    }
+                    if(sum_other != 0){
+                        score_other += 1;
+                        sum_other = 0;
+                        is_other_side = false;
+                    }
+
+                }
+
+                //us
+                score_us +=calculate_score(sum_us,is_me_side);
+                //other
+                score_other +=calculate_score(sum_other,is_other_side);
+            }
+
+            sum_us=0;
+            is_me_side = false;
+            sum_other=0;
+            is_other_side = false;
+            //up to down
+            for(int j=0;j< 8;j++){
+                if (board[j][i] == me) {
+
+                    sum_us += 1;
+                    if (i == 0 || j == 0 || i == 7 || j == 7) {
+                        is_me_side = true;
+                    }
+                } else if (board[j][i] != me && board[j][i] != null) {
+                    sum_other += 1;
+                    if (i == 0 || j == 0 || i == 7 || j == 7) {
+                        is_other_side = true;
+                    }
+                } else {
+                    if(sum_us != 0){
+                        score_us += 1;
+                        sum_us = 0;
+                        is_me_side = false;
+                    }
+                    if(sum_other != 0){
+                        score_other += 1;
+                        sum_other = 0;
+                        is_other_side = false;
+                    }
+
+                }
+
+                //us
+                score_us +=calculate_score(sum_us,is_me_side);
+                //other
+                score_other +=calculate_score(sum_other,is_other_side);
+            }
+
+
+        }
+        int score = score_us - score_other;
+        return score;
+    }
+    public static int calculate_score(int sum,boolean is_on_side){
+            //us
+            // 2
+        int score = 0;
+            if(sum == 2){
+                if(is_on_side){
+                    score += 10;
+                }else {
+                    score += 100;
+                }
+                //3
+            }else if(sum == 3){
+                if(is_on_side){
+                    score += 100;
+                }else {
+                    score += 1000;
+                }
+                //4
+            }else if(sum == 4){
+                if(is_on_side){
+                    score += 1000;
+                }else {
+                    score += 10000;
+                }
+            }
+            return score;
+    }
+
+    public static ArrayList generate(Color[][] board){
+        ArrayList<Point> available = new ArrayList<Point>();
+        for(int i = 0;i<8;i++ ){
+            for(int j = 0;j<8;j++ ){
+                if(board[i][j] == null){
+                    Point point = new Point();
+                    point.x = i;
+                    point.y = j;
+                    available.add(point);
                 }
             }
         }
 
-        return is_Game_Over;
+        return available;
+    }
+    public static Point minmax(Color[][] board, Color me){
+        ArrayList<Point> available = generate(board);
+
+
+        for (int i = 0;i<available.size();i++){
+            Point point = available.get(i);
+            // try
+            board[point.x][point.y] = me;
+
+        }
     }
 
-    public static Point alpha_beta_main(Color[][] board, int alpha, int beta, Color me, Point bestMove){
+    public static Point min(Color[][] board, Color me){
 
-
-
-        return bestMove;
     }
 
     public static Point alpha_beta_search(Color[][] board, int row, int col, Color me, Point bestMove){
@@ -516,3 +708,4 @@ class Agent extends GomokuPlayer {
         return value;
     }
 } //
+
