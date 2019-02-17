@@ -399,7 +399,7 @@ class Agent extends GomokuPlayer {
             return score;
     }
 
-    public static ArrayList generate(Color[][] board){
+    public static ArrayList<Point> generate(Color[][] board){
         ArrayList<Point> available = new ArrayList<Point>();
         for(int i = 0;i<8;i++ ){
             for(int j = 0;j<8;j++ ){
@@ -415,7 +415,7 @@ class Agent extends GomokuPlayer {
         return available;
     }
     public static Point minmax(Color[][] board, Color me,int deep,int alpha,int beta){
-        int best = 1;
+        int best = 10;// min
         ArrayList<Point> available = generate(board);
         ArrayList<Point> bestPoints = generate(board);
 
@@ -450,7 +450,7 @@ class Agent extends GomokuPlayer {
         if(deep <= 0|| value>90000){
             return value;
         }
-        int best = 1000;
+        int best = 10000;//max
 
         Color temp;
         if(me == Color.white){
@@ -459,7 +459,7 @@ class Agent extends GomokuPlayer {
             temp = Color.white;
         }
         ArrayList<Point> available = generate(board);
-        for(var i=0;i<available.size();i++) {
+        for(int i=0;i<available.size();i++) {
             Point point = available.get(i);
 
             board[point.x][point.y] = temp;
@@ -484,9 +484,9 @@ class Agent extends GomokuPlayer {
         if(deep <= 0|| value>90000){
             return value;
         }
-        int best = 1000;
+        int best = 10000;
         ArrayList<Point> available = generate(board);
-        for(var i=0;i<available.size();i++) {
+        for(int i=0;i<available.size();i++) {
             Point point = available.get(i);
             board[point.x][point.y] = me;
             value = min(board, me,deep-1, alpha, best > beta ? best : beta);
