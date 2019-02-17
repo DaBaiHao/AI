@@ -414,22 +414,89 @@ class Agent extends GomokuPlayer {
 
         return available;
     }
-    public static Point minmax(Color[][] board, Color me){
+    public static Point minmax(Color[][] board, Color me,int deep,int alpha,int beta){
+        int best = MIN
         ArrayList<Point> available = generate(board);
-
+        ArrayList<Point> bestPoints = generate(board);
 
         for (int i = 0;i<available.size();i++){
             Point point = available.get(i);
             // try
             board[point.x][point.y] = me;
+            int value = min(board, me,deep-1, alpha,beta);     //找最大值
+            // if find a good one same as before
+            if(value == best) {
+                bestPoints.add(point);
+            }
 
+            // if find a good one
+            if(value > best) {
+                bestPoints.clear();
+                bestPoints.add(point);
+            }
         }
     }
 
-    public static Point min(Color[][] board, Color me){
+    public static int min(Color[][] board, Color me,int deep,int alpha,int beta){
+        int value = valuation_function(board, me);
+        // win , may need change
+        total ++;
+        if(deep <= 0|| value>90000){
+            return value;
+        }
+        int best = MAX;
 
+        Color temp;
+        if(me == Color.white){
+            temp = Color.BLACK;
+        }else {
+            temp = Color.white;
+        }
+        ArrayList<Point> available = generate(board);
+        for(var i=0;i<available.size();i++) {
+            Point point = available.get(i);
+
+            board[point.x][point.y] = temp;
+
+            value = max(board, me,deep-1,best < alpha ? best : alpha,beta);
+            board[point.x][point.y] = null;
+
+            if(value < best){
+                best = value;
+            }
+            if(value < beta){
+                ABcut++;
+                break;
+            }
+        }
+        return best;
     }
 
+    public static int max(Color[][] board, Color me,int deep,int alpha,int beta){
+        int value = valuation_function(board, me);
+        total ++;
+        if(deep <= 0|| value>90000){
+            return value;
+        }
+        int best = MAX;
+        ArrayList<Point> available = generate(board);
+        for(var i=0;i<available.size();i++) {
+            Point point = available.get(i);
+            board[point.x][point.y] = me;
+            value = min(board, me,deep-1, alpha, best > beta ? best : beta);
+            board[point.x][point.y] = null;
+            if(value > best) {
+                best = value;
+            }
+            if(value > alpha) { //AB 剪枝
+                ABcut ++;
+                break;
+            }
+
+        }
+
+        return value;
+    }
     public static Point alpha_beta_search(Color[][] board, int row, int col, Color me, Point bestMove){
 
 
