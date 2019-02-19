@@ -11,16 +11,13 @@ public class Player180223545 extends GomokuPlayer {
      * @return
      */
     public Move chooseMove(Color[][] board, Color me) {
-        			// is the square vacant?
-        board[1][1] = me;
-        ArrayList<Point> available = generate(board);
-        System.out.println(available.size());
-        board[1][1] = null;
-        available = generate(board);
-        System.out.println(available.size());
 
-
-        return new Move(4, 3);
+        while (true) {
+            Point best = alpha_beta_min_max(board, me);
+            if(board[best.x][best.y] == null) {
+                return new Move(best.x, best.y);
+            }
+        }
 
     }
 
@@ -86,35 +83,38 @@ public class Player180223545 extends GomokuPlayer {
             board[point.x][point.y] = null;
         }
 
+        int random = (int)(Math.random()* bestPoints.size());
+        Point best_Point = bestPoints.get(random);
+        return best_Point;
         /**
          * here can calculate each point value and then return the best point
          * greedy
          */
-        int best_point_value = 0;
-        ArrayList<Point> bestPoints_final = new ArrayList<Point>();
-        for (int i = 0; i< bestPoints.size();i++){
-            // each point in best point
-            Point point = bestPoints.get(i);
-            // calculate each point value
-            int this_point_value = get_point_value(board, point); // function need implement
-            // if the point value same
-            if(this_point_value == best_point_value){
-                bestPoints_final.add(point);
-            }
-            //if this time value higher best
-            if(this_point_value > best_point_value){
-                // clear list
-                bestPoints_final.clear();
-                // add point
-                bestPoints_final.add(point);
-                // best is this
-                best_point_value = this_point_value;
-            }
-        }
-        int random_final = (int)(Math.random()* bestPoints_final.size());
-
-        Point best_Point = bestPoints.get(random_final);
-        return best_Point;
+//        int best_point_value = 0;
+//        ArrayList<Point> bestPoints_final = new ArrayList<Point>();
+//        for (int i = 0; i< bestPoints.size();i++){
+//            // each point in best point
+//            Point point = bestPoints.get(i);
+//            // calculate each point value
+//            int this_point_value = get_point_value(board, point); // function need implement
+//            // if the point value same
+//            if(this_point_value == best_point_value){
+//                bestPoints_final.add(point);
+//            }
+//            //if this time value higher best
+//            if(this_point_value > best_point_value){
+//                // clear list
+//                bestPoints_final.clear();
+//                // add point
+//                bestPoints_final.add(point);
+//                // best is this
+//                best_point_value = this_point_value;
+//            }
+//        }
+//        int random_final = (int)(Math.random()* bestPoints_final.size());
+//
+//        Point best_Point = bestPoints.get(random_final);
+//        return best_Point;
     }
 
 
@@ -128,11 +128,11 @@ public class Player180223545 extends GomokuPlayer {
      * @return
      */
     public static int min(Color[][] board, Color me, int deep, int alpha, int beta){
-        int this_time_value = value_function();
-        boolean is_game_over = is_game_over();
+        int this_time_value = value_function(board,me);
+        int is_game_over = is_Game_Over(board,me);
 
         int worse_case = 1000000000;
-        if(deep == 0|| is_game_over == true){
+        if(deep == 0|| is_game_over == 1|| is_game_over == 2|| is_game_over == 3){
             return this_time_value;
         }
 
@@ -178,10 +178,10 @@ public class Player180223545 extends GomokuPlayer {
      * @return
      */
     public static int max(Color[][] board, Color me, int deep, int alpha, int beta){
-        int this_time_value = valuation_function(board, me);
-        boolean is_game_over = is_game_over();
+        int this_time_value = value_function(board, me);
+        int is_game_over = is_Game_Over(board,me);
         int worse_case = -1000000000;
-        if(deep == 0|| is_game_over == true){
+        if(deep == 0|| is_game_over == 1|| is_game_over == 2|| is_game_over == 3){
             return this_time_value;
         }
 
@@ -328,7 +328,7 @@ public class Player180223545 extends GomokuPlayer {
                     if (board[i+j][j] == me) {
                         us_num_connect++;
                         // check if on side
-                        if(j == 0 ||j == 7 || i == 0||i==7){
+                        if(j == 0 ||j+i == 7 ){
                             is_me_side ++;
                         }
                     }
@@ -342,7 +342,7 @@ public class Player180223545 extends GomokuPlayer {
                     }
 
                     // if no chess check if is stopped or the last one of the col
-                    if(board[i+j][j] == null || i+j == 7||((board[i][j] != me &&board[i+j][j] != null))){
+                    if(board[i+j][j] == null || i+j == 7||((board[j+i][j] != me &&board[i+j][j] != null))){
                         // calculate score
                         score_us += calculate_score(us_num_connect,is_me_side);
                         is_me_side = 0;
@@ -351,24 +351,126 @@ public class Player180223545 extends GomokuPlayer {
 
                 }
 
+                // check side
+                is_me_side = 0;
+
+                // num of connect chese
+                us_num_connect = 0;
+                /**
+                 * attention another half ---left up----to----right down---
+                 */
+                // attention half
+                for(int j=0;j< 8;j++){
+                    // find our chess
+                    if (board[j][i+j] == me) {
+                        us_num_connect++;
+                        // check if on side
+                        if(j == 0 ||j+i == 7 ){
+                            is_me_side ++;
+                        }
+                    }
+
+                    // check if others chess
+                    if (board[j][j+i] != me && board[j][j+i] != null ) {
+                        // check if on side
+                        if(us_num_connect != 0){
+                            is_me_side ++;
+                        }
+                    }
 
 
+                    // if no chess check if is stopped or the last one of the col
+                    if(board[j][i+j] == null || i+j == 7||((board[j][i+j] != me &&board[j][i+j] != null))){
+                        // calculate score
+                        score_us += calculate_score(us_num_connect,is_me_side);
+                        is_me_side = 0;
+                        us_num_connect = 0;
+                    }
+                }
 
+                // check side
+                is_me_side = 0;
 
+                // num of connect chese
+                us_num_connect = 0;
+                /**
+                 * attention another half ---left up----to----right down---
+                 */
+                // attention half
+                for(int j=0;i-j>=0;j++){
+                    // find our chess
+                    if (board[j][i-j] == me) {
+                        us_num_connect++;
+                        // check if on side
+                        if(j == 0 ||i-j == 0 ){
+                            is_me_side ++;
+                        }
+                    }
 
+                    // check if others chess
+                    if (board[j][i-j] != me && board[j][i-j] != null ) {
+                        // check if on side
+                        if(us_num_connect != 0){
+                            is_me_side ++;
+                        }
+                    }
 
+                    // if no chess check if is stopped or the last one of the col
+                    if(board[j][i-j] == null || i-j == 7||((board[j][i-j] != me &&board[j][i-j] != null))){
+                        // calculate score
+                        score_us += calculate_score(us_num_connect,is_me_side);
+                        is_me_side = 0;
+                        us_num_connect = 0;
+                    }
 
+                }
 
+                // check side
+                is_me_side = 0;
 
+                // num of connect chese
+                us_num_connect = 0;
+                /**
+                 * attention another half ---left up----to----right down---
+                 */
+                // attention half
+                for(int j=0;i+j<8;j++){
 
+                    // find our chess
+                    if (board[i+j][7-j] == me) {
+                        us_num_connect++;
+                        // check if on side
+                        if(j == 0 ||i+j == 7 ){
+                            is_me_side ++;
+                        }
+                    }
+                    // check if others chess
+                    if (board[i+j][7-j] != me && board[i+j][7-j] != null ) {
+                        // check if on side
+                        if(us_num_connect != 0){
+                            is_me_side ++;
+                        }
+                    }
+                    // if no chess check if is stopped or the last one of the col
+                    if(board[i+j][7-j] == null || i+j == 7||((board[i+j][7-j] != me &&board[i+j][7-j] != null))){
+                        // calculate score
+                        score_us += calculate_score(us_num_connect,is_me_side);
+                        is_me_side = 0;
+                        us_num_connect = 0;
+                    }
 
+                }
 
             }
-
-
-
-
-
+            Color other = Color.black;
+            if(me == Color.black){
+                other = Color.white;
+            }else {
+                other = Color.black;
+            }
+            int other_score = value_function(board, other);
+            int return_value = score_us - other_score;
+            return return_value;
 
 
         }
