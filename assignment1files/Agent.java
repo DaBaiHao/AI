@@ -42,13 +42,21 @@ class Agent extends GomokuPlayer {
             }
             // first move
             if(our_color_num == 0){
-                int i = 3 + (int)(Math.random() * (4-3+1));// values are from 3 to 4
-                int j = 3 + (int)(Math.random() * (4-3+1));// values are from 3 to 4
-                return new Move(i, j);
+                while (true) {
+                    int i = 3 + (int) (Math.random() * (4 - 3 + 1));// values are from 3 to 4
+                    int j = 3 + (int) (Math.random() * (4 - 3 + 1));// values are from 3 to 4
+                    if (board[i][j] == null) {
+                        return new Move(i, j);
+                    }
+                }
+                //return new Move(i, j);
             }
 
-            Point best = minmax(board,me,4,1000,1);
-            return new Move(best.x, best.y);
+            Point best = minmax(board,me,4,100000000,1);
+            if( best.x <8 && best.y <8&&best.y >= 0&&best.x >= 0){
+                return new Move(best.x, best.y);
+            }
+
 //
 //            // from here
 //            int list_my_value[][] = new int[8][8];
@@ -261,6 +269,7 @@ class Agent extends GomokuPlayer {
             boolean is_me_side = false;
             int sum_other=0;
             boolean is_other_side = false;
+            // heng
             for(int j=0;j<8;j++) {
                 if (board[i][j] == me) {
 
@@ -274,6 +283,10 @@ class Agent extends GomokuPlayer {
                         is_other_side = true;
                     }
                 } else {
+                    score_us +=calculate_score(sum_us,is_me_side);
+                    //other
+                    score_other +=calculate_score(sum_other,is_other_side);
+
                     if(sum_us != 0){
                         score_us += 1;
                         sum_us = 0;
@@ -310,6 +323,10 @@ class Agent extends GomokuPlayer {
                         is_other_side = true;
                     }
                 } else {
+                    //us
+                    score_us +=calculate_score(sum_us,is_me_side);
+                    //other
+                    score_other +=calculate_score(sum_other,is_other_side);
                     if(sum_us != 0){
                         score_us += 1;
                         sum_us = 0;
@@ -347,6 +364,51 @@ class Agent extends GomokuPlayer {
                         is_other_side = true;
                     }
                 } else {
+                    //us
+                    score_us +=calculate_score(sum_us,is_me_side);
+                    //other
+                    score_other +=calculate_score(sum_other,is_other_side);
+                    if(sum_us != 0){
+                        score_us += 1;
+                        sum_us = 0;
+                        is_me_side = false;
+                    }
+                    if(sum_other != 0){
+                        score_other += 1;
+                        sum_other = 0;
+                        is_other_side = false;
+                    }
+
+                }
+
+                //us
+                score_us +=calculate_score(sum_us,is_me_side);
+                //other
+                score_other +=calculate_score(sum_other,is_other_side);
+            }
+
+            sum_us=0;
+            is_me_side = false;
+            sum_other=0;
+            is_other_side = false;
+            // up to down, xie
+            for(int j=0;i-j>=0;j++){
+                if (board[i-j][j] == me) {
+
+                    sum_us += 1;
+                    if (i-j == 0 || j == 0 || i-j == 7 || j == 7) {
+                        is_me_side = true;
+                    }
+                } else if (board[i-j][j] != me && board[i-j][j] != null) {
+                    sum_other += 1;
+                    if (i-j == 0 || j == 0 || i-j == 7 || j == 7) {
+                        is_other_side = true;
+                    }
+                } else {
+                    //us
+                    score_us +=calculate_score(sum_us,is_me_side);
+                    //other
+                    score_other +=calculate_score(sum_other,is_other_side);
                     if(sum_us != 0){
                         score_us += 1;
                         sum_us = 0;
@@ -368,6 +430,10 @@ class Agent extends GomokuPlayer {
 
 
         }
+
+
+
+
         int score = score_us - score_other;
         return score;
     }
@@ -391,9 +457,9 @@ class Agent extends GomokuPlayer {
                 //4
             }else if(sum == 4){
                 if(is_on_side){
-                    score += 1000;
-                }else {
                     score += 10000;
+                }else {
+                    score += 100000;
                 }
             }
             return score;
@@ -415,31 +481,35 @@ class Agent extends GomokuPlayer {
         return available;
     }
     public static Point minmax(Color[][] board, Color me,int deep,int alpha,int beta){
-        int best = 10;// min
+        int best = -10;// min
         ArrayList<Point> available = generate(board);
-        ArrayList<Point> bestPoints = generate(board);
+        ArrayList<Point> bestPoints = new ArrayList<Point>();
 
         for (int i = 0;i<available.size();i++){
             Point point = available.get(i);
             // try
             board[point.x][point.y] = me;
-            int value = min(board, me,deep-1, alpha,beta);     //find max value
+            int value = min(board, me,deep-1, alpha,best > beta ? best : beta);     //find max value
             // if find a good one same as before
             if(value == best) {
                 bestPoints.add(point);
             }
-
+ //           int otherScore_me = get_value(board,point.x,point.y,me);
+  //          int otherScore_other = get_value_forOther(board,point.x,point.y,me);
+  //          int another_value_function = otherScore_me*100+otherScore_other*100;
+  //          value = value+another_value_function;
             // if find a good one
             if(value > best) {
                 // clear all
                 bestPoints.clear();
                 bestPoints.add(point);
+                best = value;
             }
             board[point.x][point.y] = null;
 
         }
-
-        Point best_Point = bestPoints.get(((int)(bestPoints.size() * Math.random())));
+        int random = (int)(Math.random()* bestPoints.size());
+        Point best_Point = bestPoints.get(random);
         return best_Point;
     }
 
@@ -447,7 +517,9 @@ class Agent extends GomokuPlayer {
         int value = valuation_function(board, me);
         // win , may need change
         //total ++;
-        if(deep <= 0|| value>90000){
+        int is_game_over_ = is_Game_Over(board, me);
+
+        if(deep <= 0|| is_game_over_ == 1||is_game_over_==2||is_game_over_==3){
             return value;
         }
         int best = 10000;//max
@@ -480,11 +552,12 @@ class Agent extends GomokuPlayer {
 
     public static int max(Color[][] board, Color me,int deep,int alpha,int beta){
         int value = valuation_function(board, me);
-        //total ++;
-        if(deep <= 0|| value>90000){
+        int is_game_over_ = is_Game_Over(board, me);
+
+        if(deep <= 0|| is_game_over_ == 1||is_game_over_==2||is_game_over_==3){
             return value;
         }
-        int best = 10000;
+        int best = 10;
         ArrayList<Point> available = generate(board);
         for(int i=0;i<available.size();i++) {
             Point point = available.get(i);
@@ -503,12 +576,7 @@ class Agent extends GomokuPlayer {
 
         return value;
     }
-    public static Point alpha_beta_search(Color[][] board, int row, int col, Color me, Point bestMove){
 
-
-
-        return bestMove;
-    }
 
     /**
      *
