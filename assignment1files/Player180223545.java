@@ -66,7 +66,7 @@ public class Player180223545 extends GomokuPlayer {
             Point point = available.get(i);
             // try
             board[point.x][point.y] = me;
-            int this_time_value = min();
+            int this_time_value = min(board,me,4,alpha,beta); // get max
 
             /**
              *
@@ -115,6 +115,241 @@ public class Player180223545 extends GomokuPlayer {
 
         Point best_Point = bestPoints.get(random_final);
         return best_Point;
+    }
+
+
+    /**
+     *
+     * @param board
+     * @param me
+     * @param deep
+     * @param alpha
+     * @param beta
+     * @return
+     */
+    public static int min(Color[][] board, Color me, int deep, int alpha, int beta){
+        int this_time_value = value_function();
+        boolean is_game_over = is_game_over();
+
+        int worse_case = 1000000000;
+        if(deep == 0|| is_game_over == true){
+            return this_time_value;
+        }
+
+        // find other color
+        Color other = Color.black;;
+        if(me == Color.white) {
+            other = Color.black;
+        }else {
+            other  = Color.white;
+        }
+
+        // find the available point
+        ArrayList<Point> available = generate(board);
+        for(int i=0;i<available.size();i++) {
+            Point point = available.get(i);
+            board[point.x][point.y] = other;
+            // max
+            this_time_value = max(board, me,deep-1,alpha,beta);
+            board[point.x][point.y] = null;
+
+            if(this_time_value < worse_case){
+                worse_case = this_time_value;
+                beta = worse_case;
+            }
+            if(this_time_value < alpha){
+
+                break;
+            }
+        }
+
+        return worse_case;
+
+
+    }
+
+    /**
+     *
+     * @param board
+     * @param me
+     * @param deep
+     * @param alpha
+     * @param beta
+     * @return
+     */
+    public static int max(Color[][] board, Color me, int deep, int alpha, int beta){
+        int this_time_value = valuation_function(board, me);
+        boolean is_game_over = is_game_over();
+        int worse_case = -1000000000;
+        if(deep == 0|| is_game_over == true){
+            return this_time_value;
+        }
+
+        // find the available point
+        ArrayList<Point> available = generate(board);
+        for(int i=0;i<available.size();i++) {
+            Point point = available.get(i);
+            // try
+            board[point.x][point.y] = me;
+
+            this_time_value = min(board,me,deep-1,alpha,beta);
+            board[point.x][point.y] = null;
+
+            // if value is higher than baddest case, then the worse case is that value
+            if(this_time_value > worse_case){
+                worse_case = this_time_value;
+                alpha = worse_case;
+            }
+
+            if(worse_case > beta){
+                break;
+            }
+
+        }
+        // return the maxmum value
+        return worse_case;
+    }
+
+
+    /**
+     * value function
+     *              return  100000 is our   win
+     *              return -100000 is other win
+     *              return       0 is       draw
+     * return
+     * @param board
+     * @param me
+     * @return
+     */
+    public static int value_function(Color[][] board, Color me){
+
+
+        //
+        int winner = is_Game_Over(board, me);
+        if(winner == 1 ){
+            // winner 1 is us
+            return  100000;
+        }else if(winner == 2) {
+            // winner 2 is other
+            return -100000;
+        }else if(winner == 3) {
+            // winner 3 is draw
+            return 0;
+        }else {
+            // winner 0 is not over
+            int score_us = 0;
+
+            // search all board
+            for(int i=0;i<8;i++){
+
+                // check side
+                int is_me_side = 0;
+
+                // num of connect chese
+                int us_num_connect = 0;
+
+                for(int j=0;j<8;j++) {
+
+                    // find our chess
+                    if (board[i][j] == me) {
+                        us_num_connect++;
+                        // check if on side
+                        if(j == 0 ||j == 7){
+                            is_me_side ++;
+                        }
+                    }
+
+                    // check if others chess
+                    if (board[i][j] != me &&board[i][j] != null ) {
+                        // check if on side
+                        if(us_num_connect != 0){
+                            is_me_side ++;
+                        }
+                    }
+
+                    // if no chess check if is stopped or the last one of the col
+                    if(board[i][j] == null || j == 7||((board[i][j] != me &&board[i][j] != null))){
+                        // if not connected
+                        if(us_num_connect != 0){
+                            // first check the side
+                            if(is_me_side == 1){
+                                /**
+                                 * side 1
+                                 * 1 = 1
+                                 * 2 = 10
+                                 * 3 = 100
+                                 * 4 = 1000
+                                 * 5 = 100000
+                                 */
+                                if(us_num_connect == 1){
+                                    score_us +=1;
+                                }else if(us_num_connect == 2){
+                                    score_us +=10;
+                                }else if(us_num_connect == 3){
+                                    score_us +=100;
+                                }else if(us_num_connect == 4){
+                                    score_us +=1000;
+                                }else if(us_num_connect == 5){
+                                    score_us +=100000;
+                                }
+
+                            }else if(is_me_side == 0){// not on side
+                                /**
+                                 * not side
+                                 * 1 = 10
+                                 * 2 = 100
+                                 * 3 = 1000
+                                 * 4 = 10000
+                                 * 5 = 1000000
+                                 */
+                                if(us_num_connect == 1){
+                                    score_us +=10;
+                                }else if(us_num_connect == 2){
+                                    score_us +=100;
+                                }else if(us_num_connect == 3){
+                                    score_us +=1000;
+                                }else if(us_num_connect == 4){
+                                    score_us +=10000;
+                                }else if(us_num_connect == 5){
+                                    score_us +=1000000;
+                                }
+
+                            }else {
+                                /**
+                                 * double side
+                                 * 0 score get
+                                 */
+                                score_us +=0;
+
+                            }
+                        }
+                        is_me_side = 0;
+                        us_num_connect = 0;
+                    }
+
+
+                }
+
+
+
+
+
+
+
+
+
+            }
+
+
+
+
+
+
+
+        }
+
+
+
     }
 
 

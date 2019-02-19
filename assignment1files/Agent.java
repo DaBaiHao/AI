@@ -567,14 +567,14 @@ class Agent extends GomokuPlayer {
             if(value > best) {
                 best = value;
             }
-            if(value > alpha) { //AB 剪枝
+            if(value < beta) { //AB 剪枝
                 //ABcut ++;
                 break;
             }
 
         }
 
-        return value;
+        return best;
     }
 
 
