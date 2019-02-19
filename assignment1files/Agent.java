@@ -52,7 +52,7 @@ class Agent extends GomokuPlayer {
                 //return new Move(i, j);
             }
 
-            Point best = minmax(board,me,4,100000000,1);
+            Point best = minmax(board,me,4,-100000,1000000);
             if( best.x <8 && best.y <8&&best.y >= 0&&best.x >= 0){
                 return new Move(best.x, best.y);
             }
@@ -489,7 +489,7 @@ class Agent extends GomokuPlayer {
             Point point = available.get(i);
             // try
             board[point.x][point.y] = me;
-            int value = min(board, me,deep-1, alpha,best > beta ? best : beta);     //find max value
+            int value = min(board, me,deep-1, alpha,beta);     //find max value
             // if find a good one same as before
             if(value == best) {
                 bestPoints.add(point);
@@ -513,69 +513,81 @@ class Agent extends GomokuPlayer {
         return best_Point;
     }
 
-    public static int min(Color[][] board, Color me,int deep,int alpha,int beta){
-        int value = valuation_function(board, me);
-        // win , may need change
-        //total ++;
-        int is_game_over_ = is_Game_Over(board, me);
+    public static int min(Color[][] board, Color me, int deep, int alpha, int beta){
+        int this_time_value = valuation_function(board,me);
+        int is_game_over = is_Game_Over(board,me);
 
-        if(deep <= 0|| is_game_over_ == 1||is_game_over_==2||is_game_over_==3){
-            return value;
+        int worse_case = 1000000000;
+        if(deep == 0|| is_game_over == 1||is_game_over == 2||is_game_over == 3){
+            return this_time_value;
         }
-        int best = 10000;//max
 
-        Color temp;
-        if(me == Color.white){
-            temp = Color.BLACK;
+        // find other color
+        Color other = Color.black;;
+        if(me == Color.white) {
+            other = Color.black;
         }else {
-            temp = Color.white;
+            other  = Color.white;
         }
+
+        // find the available point
         ArrayList<Point> available = generate(board);
         for(int i=0;i<available.size();i++) {
             Point point = available.get(i);
-
-            board[point.x][point.y] = temp;
-
-            value = max(board, me,deep-1,best < alpha ? best : alpha,beta);
+            board[point.x][point.y] = other;
+            // max
+            this_time_value = max(board, me,deep-1,alpha,beta);
             board[point.x][point.y] = null;
 
-            if(value < best){
-                best = value;
+            if(this_time_value < worse_case){
+                worse_case = this_time_value;
+                beta = worse_case;
             }
-            if(value < beta){
-                //ABcut++;
+            if(this_time_value < alpha){
+
                 break;
             }
         }
-        return best;
+
+        return worse_case;
+
+
     }
 
-    public static int max(Color[][] board, Color me,int deep,int alpha,int beta){
-        int value = valuation_function(board, me);
-        int is_game_over_ = is_Game_Over(board, me);
 
-        if(deep <= 0|| is_game_over_ == 1||is_game_over_==2||is_game_over_==3){
-            return value;
+    public static int max(Color[][] board, Color me, int deep, int alpha, int beta){
+        int this_time_value = valuation_function(board,me);
+        int is_game_over = is_Game_Over(board,me);
+        int worse_case = -1000000000;
+        if(deep == 0|| is_game_over == 1||is_game_over==2||is_game_over==3){
+            return this_time_value;
         }
-        int best = 10;
+
+        // find the available point
         ArrayList<Point> available = generate(board);
         for(int i=0;i<available.size();i++) {
             Point point = available.get(i);
+            // try
             board[point.x][point.y] = me;
-            value = min(board, me,deep-1, alpha, best > beta ? best : beta);
+
+            this_time_value = min(board,me,deep-1,alpha,beta);
             board[point.x][point.y] = null;
-            if(value > best) {
-                best = value;
+
+            // if value is higher than baddest case, then the worse case is that value
+            if(this_time_value > worse_case){
+                worse_case = this_time_value;
+                alpha = worse_case;
             }
-            if(value < beta) { //AB 剪枝
-                //ABcut ++;
+
+            if(worse_case > beta){
                 break;
             }
 
         }
-
-        return best;
+        // return the maxmum value
+        return worse_case;
     }
+
 
 
     /**
