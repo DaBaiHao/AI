@@ -260,7 +260,7 @@ public class Player180223545 extends GomokuPlayer {
                     }
 
                     // check if others chess
-                    if (board[i][j] != me &&board[i][j] != null ) {
+                    if (board[i][j] != me && board[i][j] != null ) {
                         // check if on side
                         if(us_num_connect != 0){
                             is_me_side ++;
@@ -269,66 +269,91 @@ public class Player180223545 extends GomokuPlayer {
 
                     // if no chess check if is stopped or the last one of the col
                     if(board[i][j] == null || j == 7||((board[i][j] != me &&board[i][j] != null))){
-                        // if not connected
-                        if(us_num_connect != 0){
-                            // first check the side
-                            if(is_me_side == 1){
-                                /**
-                                 * side 1
-                                 * 1 = 1
-                                 * 2 = 10
-                                 * 3 = 100
-                                 * 4 = 1000
-                                 * 5 = 100000
-                                 */
-                                if(us_num_connect == 1){
-                                    score_us +=1;
-                                }else if(us_num_connect == 2){
-                                    score_us +=10;
-                                }else if(us_num_connect == 3){
-                                    score_us +=100;
-                                }else if(us_num_connect == 4){
-                                    score_us +=1000;
-                                }else if(us_num_connect == 5){
-                                    score_us +=100000;
-                                }
-
-                            }else if(is_me_side == 0){// not on side
-                                /**
-                                 * not side
-                                 * 1 = 10
-                                 * 2 = 100
-                                 * 3 = 1000
-                                 * 4 = 10000
-                                 * 5 = 1000000
-                                 */
-                                if(us_num_connect == 1){
-                                    score_us +=10;
-                                }else if(us_num_connect == 2){
-                                    score_us +=100;
-                                }else if(us_num_connect == 3){
-                                    score_us +=1000;
-                                }else if(us_num_connect == 4){
-                                    score_us +=10000;
-                                }else if(us_num_connect == 5){
-                                    score_us +=1000000;
-                                }
-
-                            }else {
-                                /**
-                                 * double side
-                                 * 0 score get
-                                 */
-                                score_us +=0;
-
-                            }
-                        }
+                        // calculate score
+                        score_us += calculate_score(us_num_connect,is_me_side);
                         is_me_side = 0;
                         us_num_connect = 0;
                     }
 
 
                 }
+
+                // check side
+                is_me_side = 0;
+
+                // num of connect chese
+                us_num_connect = 0;
+                for(int j=0;j< 8;j++){
+
+                    // if is ours
+                    if (board[j][i] == me) {
+                        us_num_connect++;
+                        // check if on side
+                        // because j i 00 70 is side
+                        if(j == 0 ||j == 7){
+                            is_me_side ++;
+                        }
+                    }
+
+
+                    // check if others chess
+                    if (board[j][i] != me && board[j][i] != null ) {
+                        // check if on side
+                        if(us_num_connect != 0){
+                            is_me_side ++;
+                        }
+                    }
+
+                    // if no chess check if is stopped or the last one of the col
+                    if(board[j][i] == null || j == 7 ||((board[j][i] != me && board[j][i] != null))){
+                        // calculate score
+                        score_us += calculate_score(us_num_connect,is_me_side);
+                        is_me_side = 0;
+                        us_num_connect = 0;
+                    }
+
+                }
+
+                // check side
+                is_me_side = 0;
+
+                // num of connect chese
+                us_num_connect = 0;
+                /**
+                 * attention half ---left up----to----right down---
+                 */
+                // attention half
+                for(int j=0;i+j< 8;j++){
+                    // find our chess
+                    if (board[i+j][j] == me) {
+                        us_num_connect++;
+                        // check if on side
+                        if(j == 0 ||j == 7 || i == 0||i==7){
+                            is_me_side ++;
+                        }
+                    }
+
+                    // check if others chess
+                    if (board[i+j][j] != me && board[i+j][j] != null ) {
+                        // check if on side
+                        if(us_num_connect != 0){
+                            is_me_side ++;
+                        }
+                    }
+
+                    // if no chess check if is stopped or the last one of the col
+                    if(board[i+j][j] == null || i+j == 7||((board[i][j] != me &&board[i+j][j] != null))){
+                        // calculate score
+                        score_us += calculate_score(us_num_connect,is_me_side);
+                        is_me_side = 0;
+                        us_num_connect = 0;
+                    }
+
+                }
+
+
+
+
 
 
 
@@ -350,6 +375,71 @@ public class Player180223545 extends GomokuPlayer {
 
 
 
+    }
+
+    /**
+     *
+     * @param us_num_connect
+     * @param is_me_side
+     * @return
+     */
+    public static int calculate_score(int us_num_connect, int is_me_side){
+        // if not connected
+        int score_us = 0;
+        if(us_num_connect != 0){
+            // first check the side
+            if(is_me_side == 1){
+                /**
+                 * side 1
+                 * 1 = 1
+                 * 2 = 10
+                 * 3 = 100
+                 * 4 = 1000
+                 * 5 = 100000
+                 */
+                if(us_num_connect == 1){
+                    score_us +=1;
+                }else if(us_num_connect == 2){
+                    score_us +=10;
+                }else if(us_num_connect == 3){
+                    score_us +=100;
+                }else if(us_num_connect == 4){
+                    score_us +=1000;
+                }else if(us_num_connect == 5){
+                    score_us +=100000;
+                }
+
+            }else if(is_me_side == 0){// not on side
+                /**
+                 * not side
+                 * 1 = 10
+                 * 2 = 100
+                 * 3 = 1000
+                 * 4 = 10000
+                 * 5 = 1000000
+                 */
+                if(us_num_connect == 1){
+                    score_us +=10;
+                }else if(us_num_connect == 2){
+                    score_us +=100;
+                }else if(us_num_connect == 3){
+                    score_us +=1000;
+                }else if(us_num_connect == 4){
+                    score_us +=10000;
+                }else if(us_num_connect == 5){
+                    score_us +=1000000;
+                }
+
+            }else {
+                /**
+                 * double side
+                 * 0 score get
+                 */
+                score_us +=0;
+
+            }
+        }
+        return score_us;
     }
 
 
@@ -366,22 +456,26 @@ public class Player180223545 extends GomokuPlayer {
         // 3 draw
         //int is_Game_Over = 0;
         Color color = Color.black;
+
+        //
         int empty_number = 0;
         for(int i = 0;i<8;i++ ){
             for(int j = 0;j<8;j++ ){
                 if(board[i][j] != null){
                     color = board[i][j];
                     if(color == me){
+                        // find a chese
                         int value = 1;
+                        // right search first
                         if(j + 1 < 8){//right
-                            if(board[i ][j+1] == me){
+                            if(board[i][j+1] == me){
                                 value += search_right(board, i,j+1,me);
                             }
                             if(value == 5){
                                 return 1;
                             }
                         }
-                        else if(i + 1 < 8){//down
+                        if(i + 1 < 8){//down
                             if(board[i +1][j] == me){
                                 value += search_down(board, i+1,j,me);
                             }
@@ -389,24 +483,7 @@ public class Player180223545 extends GomokuPlayer {
                                 return 1;
                             }
                         }
-                        else if(j - 1 >= 0){//left
-                            if(board[i ][j-1] == me){
-                                value += search_left(board, i,j-1,me);
-                            }
-                            if(value == 5){
-                                return 1;
-                            }
-                        }
-                        else if(i - 1 >= 0){//up
-                            if(board[i-1 ][j] == me){
-                                value += search_up(board, i -1,j,me);
-                            }
-                            if(value == 5){
-                                return 1;
-                            }
-
-                        }
-                        else if(j + 1 < 8 && i + 1 <8){//down right
+                        if(j + 1 < 8 && i + 1 <8){//down right
                             if(board[i+1][j+1] == me){
                                 value += search_down_right(board, i + 1,j + 1,me);
                             }
@@ -414,25 +491,9 @@ public class Player180223545 extends GomokuPlayer {
                                 return 1;
                             }
                         }
-                        else if(j - 1 >= 0 && i + 1 <8){//down left
+                        if(j - 1 >= 0 && i + 1 <8){//down left
                             if(board[i+1][j-1] == me){
                                 value += search_down_left(board, i + 1,j - 1,me);
-                            }
-                            if(value == 5){
-                                return 1;
-                            }
-                        }
-                        else if(j - 1 >= 0 && i - 1 >= 0){//up left
-                            if(board[i -1][j-1] == me){
-                                value += search_up_left(board, i - 1,j - 1,me);
-                            }
-                            if(value == 5){
-                                return 1;
-                            }
-                        }
-                        else if(j + 1 < 8 && i - 1 >= 0){//up right
-                            if(board[i -1][j + 1] == me){
-                                value += search_up_right(board, i - 1,j + 1,me);
                             }
                             if(value == 5){
                                 return 1;
@@ -441,74 +502,46 @@ public class Player180223545 extends GomokuPlayer {
 
                         // else others
                     }else {
-
+                        Color other = Color.black;
+                        if(me == Color.black){
+                            other = Color.white;
+                        }else {
+                            other = Color.black;
+                        }
                         int value = 1;
                         if(j + 1 < 8){//right
-                            if(board[i ][j+1] != me && board[i ][j+1] != null){
-                                value += search_right_forOther(board, i,j+1,me);
+                            if(board[i ][j+1] == other){
+                                value += search_right(board, i,j+1,other);
                             }
                             if(value == 5){
                                 return 2;
                             }
                         }
-                        else if(i + 1 < 8){//down
-                            if(board[i+1 ][j] != me && board[i+1 ][j] != null){
-                                value += search_down_forOther(board, i+1,j,me);
+                        if(i + 1 < 8){//down
+                            if(board[i+1 ][j] == other){
+                                value += search_down(board, i+1,j,other);
                             }
                             if(value == 5){
                                 return 2;
                             }
                         }
-                        else if(j - 1 >= 0){//left
-                            if(board[i ][j-1] != me && board[i ][j-1] != null ){
-                                value += search_left_forOthers(board, i,j-1,me);
+                        if(j + 1 < 8 && i + 1 <8){//down right
+                            if(board[i+1][i+1] == other){
+                                value += search_down_right(board, i + 1,j + 1,other);
                             }
                             if(value == 5){
                                 return 2;
                             }
                         }
-                        else if(i - 1 >= 0){//up
-                            if(board[i-1 ][j] != me && board[i-1 ][j] != null){
-                                value += search_up_forOthers(board, i -1,j,me);
-                            }
-                            if(value == 5){
-                                return 2;
-                            }
-                        }
-                        else if(j + 1 < 8 && i + 1 <8){//down right
-                            if(board[i+1][i+1] != me && board[i+1][j+1] != null){
-                                value += search_down_right_forOther(board, i + 1,j + 1,me);
-                            }
-                            if(value == 5){
-                                return 2;
-                            }
-                        }
-                        else if(j - 1 >= 0 && i + 1 <8){//down left
-                            if(board[i+1][j-1] != me && board[i+1][j+1] != null){
-                                value += search_down_left_forOthers(board, i + 1,j - 1,me);
+                        if(j - 1 >= 0 && i + 1 <8){//down left
+                            if(board[i+1][j-1] == other){
+                                value += search_down_left(board, i + 1,j - 1,other);
                             }
                             if(value == 5){
                                 return 2;
                             }
                         }
 
-                        else if(j - 1 >= 0 && i - 1 >= 0){//up left
-                            if(board[i -1][j-1] != me && board[i -1][j-1] != null ){
-                                value += search_up_left_forOthers(board, i - 1,j - 1,me);
-                            }
-                            if(value == 5){
-                                return 2;
-                            }
-                        }
-
-                        else if(j + 1 < 8 && i - 1 >= 0){//up right
-                            if(board[i -1][j + 1] != me && board[i -1][j + 1] != null){
-                                value += search_up_right_fotOthers(board, i - 1,j + 1,me);
-                            }
-                            if(value == 5){
-                                return 2;
-                            }
-                        }
                     }
                 }else {
                     empty_number++;
@@ -523,7 +556,46 @@ public class Player180223545 extends GomokuPlayer {
             return 0;
         }
 
+
     }
 
+    public static int search_right(Color[][] board,int row, int col, Color me){
+        int value = 1;
+        if(col + 1 < 8){
+            if(board[row ][col+1] == me) {
+                value += search_right(board, row, col + 1, me);
+            }
+        }
+        return value;
+    }
 
+    public static int search_down(Color[][] board,int row, int col, Color me){
+        int value = 1;
+        if(row + 1 < 8){
+            if(board[row +1][col] == me) {
+                value += search_down(board, row + 1, col, me);
+            }
+        }
+        return value;
+    }
+
+    public static int search_down_right(Color[][] board,int row, int col, Color me){
+        int value = 1;
+        if(col + 1 < 8 && row + 1 <8){
+            if(board[row+1][col+1] == me) {
+                value += search_down_right(board, row + 1, col + 1, me);
+            }
+        }
+        return value;
+    }
+
+    public static int search_down_left(Color[][] board,int row, int col, Color me){
+        int value = 1;
+        if(col - 1 >= 0 && row + 1 <8){
+            if(board[row+1][col-1] == me) {
+                value += search_down_left(board, row + 1, col - 1, me);
+            }
+        }
+        return value;
+    }
 }
