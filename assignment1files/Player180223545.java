@@ -14,9 +14,8 @@ public class Player180223545 extends GomokuPlayer {
 
         while (true) {
             Point best = alpha_beta_min_max(board, me);
-            if(board[best.x][best.y] == null) {
-                return new Move(best.x, best.y);
-            }
+            return new Move(best.x, best.y);
+
         }
 
     }
@@ -470,7 +469,7 @@ public class Player180223545 extends GomokuPlayer {
             }
             int other_score = value_function(board, other);
             int return_value = score_us - other_score;
-            return return_value;
+            return score_us;
 
 
         }
