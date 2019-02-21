@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4611fe15-f65b-490d-89c0-e1c19176ddcd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Agent.class" beforeDir="false" afterPath="$PROJECT_DIR$/Agent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/Agent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Player180223545.class" beforeDir="false" afterPath="$PROJECT_DIR$/Player180223545.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Player180223545.java" beforeDir="false" afterPath="$PROJECT_DIR$/Player180223545.java" afterDir="false" />
     </list>
@@ -51,20 +50,21 @@
     <session id="1194088677">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.15" value="1" />
+          <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="1704" />
+          <entry key="java" value="1919" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1704" />
+          <entry key="JAVA" value="1919" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -84,7 +84,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RandomPlayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
+            <state relative-caret-position="240">
               <caret line="16" column="9" selection-start-line="11" selection-start-column="8" selection-end-line="16" selection-end-column="9" />
             </state>
           </provider>
@@ -93,13 +93,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Agent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-6620">
-              <caret line="445" column="33" lean-forward="true" selection-start-line="445" selection-start-column="33" selection-end-line="445" selection-end-column="33" />
+            <state relative-caret-position="-2411">
+              <caret line="38" column="40" lean-forward="true" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
               <folding>
-                <element signature="method#is_Game_Over#0;class#Agent#0" />
                 <element signature="method#valuation_function#0;class#Agent#0" />
                 <element signature="method#calculate_score#0;class#Agent#0" />
                 <element signature="method#generate#0;class#Agent#0" />
+                <element signature="method#minmax#0;class#Agent#0" />
                 <element signature="method#get_value#0;class#Agent#0" />
                 <element signature="method#search_up#0;class#Agent#0" />
               </folding>
@@ -110,18 +110,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Player180223545.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="681" lean-forward="true" selection-start-line="681" selection-end-line="681" />
+            <state relative-caret-position="263">
+              <caret line="76" column="48" lean-forward="true" selection-start-line="76" selection-start-column="48" selection-end-line="76" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#generate#0;class#Player180223545#0" />
-                <element signature="e#784#791#0" expanded="true" />
-                <element signature="e#1482#1489#0" expanded="true" />
+                <element signature="e#614#621#0" expanded="true" />
+                <element signature="e#1312#1319#0" expanded="true" />
                 <element signature="method#min#0;class#Player180223545#0" />
                 <element signature="method#max#0;class#Player180223545#0" />
                 <element signature="method#value_function#0;class#Player180223545#0" />
-                <element signature="method#calculate_score_basedon_c#0;class#Player180223545#0" />
-                <element signature="method#is_Game_Over#0;class#Player180223545#0" />
+                <element signature="method#calculate_score#0;class#Player180223545#0" />
                 <element signature="method#search_right#0;class#Player180223545#0" />
                 <element signature="method#search_down#0;class#Player180223545#0" />
                 <element signature="method#search_down_right#0;class#Player180223545#0" />
@@ -144,7 +143,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GomokuBoard.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1080">
+            <state relative-caret-position="675">
               <caret line="45" column="59" selection-start-line="45" selection-start-column="48" selection-end-line="45" selection-end-column="59" />
             </state>
           </provider>
@@ -191,8 +190,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Player180223545.java" />
         <option value="$PROJECT_DIR$/Agent.java" />
+        <option value="$PROJECT_DIR$/Player180223545.java" />
       </list>
     </option>
   </component>
@@ -208,11 +207,11 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="x" value="38" />
-    <option name="y" value="22" />
+    <option name="y" value="23" />
     <option name="width" value="1242" />
-    <option name="height" value="778" />
+    <option name="height" value="777" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -222,6 +221,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -234,7 +234,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -245,7 +244,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -275,16 +274,18 @@
       <workItem from="1550314736376" duration="50250000" />
       <workItem from="1550575213376" duration="10849000" />
       <workItem from="1550608041866" duration="11868000" />
+      <workItem from="1550670117507" duration="5125000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="83280000" />
+    <option name="totallyTimeSpent" value="88405000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="38" y="23" width="1242" height="777" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.09115282" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.0925" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -299,7 +300,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.038297873" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.037956204" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Messages" order="11" />
@@ -336,7 +337,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/RandomPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
+        <state relative-caret-position="240">
           <caret line="16" column="9" selection-start-line="11" selection-start-column="8" selection-end-line="16" selection-end-column="9" />
         </state>
       </provider>
@@ -349,7 +350,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GomokuBoard.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
+        <state relative-caret-position="675">
           <caret line="45" column="59" selection-start-line="45" selection-start-column="48" selection-end-line="45" selection-end-column="59" />
         </state>
       </provider>
@@ -368,13 +369,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Agent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6620">
-          <caret line="445" column="33" lean-forward="true" selection-start-line="445" selection-start-column="33" selection-end-line="445" selection-end-column="33" />
+        <state relative-caret-position="-2411">
+          <caret line="38" column="40" lean-forward="true" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
           <folding>
-            <element signature="method#is_Game_Over#0;class#Agent#0" />
             <element signature="method#valuation_function#0;class#Agent#0" />
             <element signature="method#calculate_score#0;class#Agent#0" />
             <element signature="method#generate#0;class#Agent#0" />
+            <element signature="method#minmax#0;class#Agent#0" />
             <element signature="method#get_value#0;class#Agent#0" />
             <element signature="method#search_up#0;class#Agent#0" />
           </folding>
@@ -383,18 +384,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Player180223545.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="681" lean-forward="true" selection-start-line="681" selection-end-line="681" />
+        <state relative-caret-position="263">
+          <caret line="76" column="48" lean-forward="true" selection-start-line="76" selection-start-column="48" selection-end-line="76" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#generate#0;class#Player180223545#0" />
-            <element signature="e#784#791#0" expanded="true" />
-            <element signature="e#1482#1489#0" expanded="true" />
+            <element signature="e#614#621#0" expanded="true" />
+            <element signature="e#1312#1319#0" expanded="true" />
             <element signature="method#min#0;class#Player180223545#0" />
             <element signature="method#max#0;class#Player180223545#0" />
             <element signature="method#value_function#0;class#Player180223545#0" />
-            <element signature="method#calculate_score_basedon_c#0;class#Player180223545#0" />
-            <element signature="method#is_Game_Over#0;class#Player180223545#0" />
+            <element signature="method#calculate_score#0;class#Player180223545#0" />
             <element signature="method#search_right#0;class#Player180223545#0" />
             <element signature="method#search_down#0;class#Player180223545#0" />
             <element signature="method#search_down_right#0;class#Player180223545#0" />
