@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4611fe15-f65b-490d-89c0-e1c19176ddcd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Check.java" beforeDir="false" afterPath="$PROJECT_DIR$/Check.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Player180223545.class" beforeDir="false" afterPath="$PROJECT_DIR$/Player180223545.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Player180223545.java" beforeDir="false" afterPath="$PROJECT_DIR$/Player180223545.java" afterDir="false" />
     </list>
@@ -61,12 +61,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="2659" />
+          <entry key="java" value="2995" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2659" />
+          <entry key="JAVA" value="2995" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -97,15 +97,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Agent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="888">
-              <caret line="38" column="40" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
+            <state relative-caret-position="49">
+              <caret line="545" column="76" selection-start-line="545" selection-start-column="76" selection-end-line="545" selection-end-column="76" />
               <folding>
+                <element signature="method#is_Game_Over#0;class#Agent#0" />
                 <element signature="method#valuation_function#0;class#Agent#0" />
                 <element signature="method#calculate_score#0;class#Agent#0" />
                 <element signature="method#generate#0;class#Agent#0" />
                 <element signature="method#minmax#0;class#Agent#0" />
                 <element signature="method#get_value#0;class#Agent#0" />
-                <element signature="method#search_up#0;class#Agent#0" />
+                <element signature="method#search_left#0;class#Agent#0" />
+                <element signature="method#search_down_right#0;class#Agent#0" />
               </folding>
             </state>
           </provider>
@@ -114,13 +116,25 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Player180223545.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="270" column="22" lean-forward="true" selection-start-line="270" selection-start-column="22" selection-end-line="270" selection-end-column="22" />
+            <state relative-caret-position="212">
+              <caret line="805" column="37" selection-start-line="805" selection-start-column="37" selection-end-line="805" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#generate#0;class#Player180223545#0" />
                 <element signature="method#alpha_beta_min_max#0;class#Player180223545#0" />
+                <element signature="e#3476#3483#0" expanded="true" />
+                <element signature="e#3586#3593#0" expanded="true" />
                 <element signature="method#min#0;class#Player180223545#0" />
+                <element signature="method#value_function#0;class#Player180223545#0" />
+                <element signature="method#is_Game_Over#0;class#Player180223545#0" />
+                <element signature="method#search_right#0;class#Player180223545#0" />
+                <element signature="method#search_down#0;class#Player180223545#0" />
+                <element signature="method#search_down_right#0;class#Player180223545#0" />
+                <element signature="method#search_down_left#0;class#Player180223545#0" />
+                <element signature="method#search_left#0;class#Player180223545#0" />
+                <element signature="method#search_up#0;class#Player180223545#0" />
+                <element signature="method#search_up_left#0;class#Player180223545#0" />
+                <element signature="method#search_up_right#0;class#Player180223545#0" />
               </folding>
             </state>
           </provider>
@@ -129,10 +143,14 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Check.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3480">
-              <caret line="145" column="17" selection-start-line="145" selection-start-column="17" selection-end-line="145" selection-end-column="17" />
+            <state relative-caret-position="187">
+              <caret line="179" column="22" selection-start-line="179" selection-start-column="22" selection-end-line="179" selection-end-column="22" />
               <folding>
-                <element signature="method#search_right#0;class#Check#0" />
+                <element signature="method#is_Game_Over#0;class#Check#0" />
+                <element signature="method#search_left#0;class#Check#0" />
+                <element signature="method#search_up#0;class#Check#0" />
+                <element signature="method#search_up_left#0;class#Check#0" />
+                <element signature="method#search_up_right#0;class#Check#0" />
                 <element signature="method#search_down#0;class#Check#0" />
                 <element signature="method#search_down_right#0;class#Check#0" />
                 <element signature="method#search_down_left#0;class#Check#0" />
@@ -278,12 +296,12 @@
       <workItem from="1550608041866" duration="11868000" />
       <workItem from="1550670117507" duration="5125000" />
       <workItem from="1550759773894" duration="7415000" />
-      <workItem from="1550849078041" duration="2184000" />
+      <workItem from="1550849078041" duration="6939000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98004000" />
+    <option name="totallyTimeSpent" value="102759000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="36" y="23" width="1242" height="777" extended-state="6" />
@@ -356,37 +374,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Agent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="888">
-          <caret line="38" column="40" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
-          <folding>
-            <element signature="method#valuation_function#0;class#Agent#0" />
-            <element signature="method#calculate_score#0;class#Agent#0" />
-            <element signature="method#generate#0;class#Agent#0" />
-            <element signature="method#minmax#0;class#Agent#0" />
-            <element signature="method#get_value#0;class#Agent#0" />
-            <element signature="method#search_up#0;class#Agent#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Check.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3480">
-          <caret line="145" column="17" selection-start-line="145" selection-start-column="17" selection-end-line="145" selection-end-column="17" />
-          <folding>
-            <element signature="method#search_right#0;class#Check#0" />
-            <element signature="method#search_down#0;class#Check#0" />
-            <element signature="method#search_down_right#0;class#Check#0" />
-            <element signature="method#search_down_left#0;class#Check#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GomokuPlayer.class">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/HumanPlayer.class">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -403,15 +390,64 @@
     <entry file="file://$PROJECT_DIR$/Agent.class">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/GomokuPlayer.class">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Check.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="179" column="22" selection-start-line="179" selection-start-column="22" selection-end-line="179" selection-end-column="22" />
+          <folding>
+            <element signature="method#is_Game_Over#0;class#Check#0" />
+            <element signature="method#search_left#0;class#Check#0" />
+            <element signature="method#search_up#0;class#Check#0" />
+            <element signature="method#search_up_left#0;class#Check#0" />
+            <element signature="method#search_up_right#0;class#Check#0" />
+            <element signature="method#search_down#0;class#Check#0" />
+            <element signature="method#search_down_right#0;class#Check#0" />
+            <element signature="method#search_down_left#0;class#Check#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Agent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="49">
+          <caret line="545" column="76" selection-start-line="545" selection-start-column="76" selection-end-line="545" selection-end-column="76" />
+          <folding>
+            <element signature="method#is_Game_Over#0;class#Agent#0" />
+            <element signature="method#valuation_function#0;class#Agent#0" />
+            <element signature="method#calculate_score#0;class#Agent#0" />
+            <element signature="method#generate#0;class#Agent#0" />
+            <element signature="method#minmax#0;class#Agent#0" />
+            <element signature="method#get_value#0;class#Agent#0" />
+            <element signature="method#search_left#0;class#Agent#0" />
+            <element signature="method#search_down_right#0;class#Agent#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Player180223545.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="270" column="22" lean-forward="true" selection-start-line="270" selection-start-column="22" selection-end-line="270" selection-end-column="22" />
+        <state relative-caret-position="212">
+          <caret line="805" column="37" selection-start-line="805" selection-start-column="37" selection-end-line="805" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#generate#0;class#Player180223545#0" />
             <element signature="method#alpha_beta_min_max#0;class#Player180223545#0" />
+            <element signature="e#3476#3483#0" expanded="true" />
+            <element signature="e#3586#3593#0" expanded="true" />
             <element signature="method#min#0;class#Player180223545#0" />
+            <element signature="method#value_function#0;class#Player180223545#0" />
+            <element signature="method#is_Game_Over#0;class#Player180223545#0" />
+            <element signature="method#search_right#0;class#Player180223545#0" />
+            <element signature="method#search_down#0;class#Player180223545#0" />
+            <element signature="method#search_down_right#0;class#Player180223545#0" />
+            <element signature="method#search_down_left#0;class#Player180223545#0" />
+            <element signature="method#search_left#0;class#Player180223545#0" />
+            <element signature="method#search_up#0;class#Player180223545#0" />
+            <element signature="method#search_up_left#0;class#Player180223545#0" />
+            <element signature="method#search_up_right#0;class#Player180223545#0" />
           </folding>
         </state>
       </provider>

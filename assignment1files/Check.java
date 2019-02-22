@@ -167,6 +167,46 @@ class Check extends GomokuPlayer {
         return value;
     }
 
+    public static int search_left(Color[][] board,int row, int col, Color me){
+        int value = 1;
+        if(col - 1 >= 0){
+            if(board[row ][col-1] == me) {
+                value += search_left(board, row, col - 1, me);
+            }
+        }
+        return value;
+    }
+
+    public static int search_up(Color[][] board,int row, int col, Color me){
+        int value = 1;
+        if(row -1>=0){
+            if(board[row-1 ][col] == me) {
+                value += search_up(board, row - 1, col, me);
+            }
+        }
+        return value;
+    }
+
+    public static int search_up_left(Color[][] board,int row, int col, Color me){
+        int value = 1;
+        if(col - 1 >= 0 && row - 1 >= 0){
+            if(board[row -1][col-1] == me) {
+                value += search_up_left(board, row - 1, col - 1, me);
+            }
+        }
+        return value;
+    }
+
+    public static int search_up_right(Color[][] board,int row, int col, Color me){
+        int value = 1;
+        if(col + 1 < 8 && row - 1 >= 0){
+            if(board[row -1][col + 1] == me) {
+                value += search_up_right(board, row - 1, col + 1, me);
+            }
+        }
+        return value;
+    }
+
     public static int search_down(Color[][] board,int row, int col, Color me){
         int value = 1;
         if(row + 1 < 8){
