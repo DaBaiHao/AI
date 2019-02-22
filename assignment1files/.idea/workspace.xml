@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4611fe15-f65b-490d-89c0-e1c19176ddcd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player180223545.class" beforeDir="false" afterPath="$PROJECT_DIR$/Player180223545.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player180223545.java" beforeDir="false" afterPath="$PROJECT_DIR$/Player180223545.java" afterDir="false" />
-    </list>
+    <list default="true" id="4611fe15-f65b-490d-89c0-e1c19176ddcd" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,7 +12,7 @@
     <session id="-369022342">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.5" value="1" />
@@ -118,8 +113,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Player180223545.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="14" column="7" lean-forward="true" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+            <state relative-caret-position="120">
+              <caret line="5" column="16" lean-forward="true" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1412#1419#0" expanded="true" />
@@ -300,16 +295,15 @@
       <workItem from="1550670117507" duration="5125000" />
       <workItem from="1550759773894" duration="7415000" />
       <workItem from="1550849078041" duration="7059000" />
-      <workItem from="1550869176096" duration="3878000" />
+      <workItem from="1550869176096" duration="3906000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="106757000" />
+    <option name="totallyTimeSpent" value="106785000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.05982215" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -433,8 +427,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Player180223545.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="14" column="7" lean-forward="true" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+        <state relative-caret-position="120">
+          <caret line="5" column="16" lean-forward="true" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1412#1419#0" expanded="true" />
