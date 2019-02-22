@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4611fe15-f65b-490d-89c0-e1c19176ddcd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Check.java" beforeDir="false" afterPath="$PROJECT_DIR$/Check.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player180223545.class" beforeDir="false" afterPath="$PROJECT_DIR$/Player180223545.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player180223545.java" beforeDir="false" afterPath="$PROJECT_DIR$/Player180223545.java" afterDir="false" />
-    </list>
+    <list default="true" id="4611fe15-f65b-490d-89c0-e1c19176ddcd" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,8 +112,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Player180223545.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="805" column="37" selection-start-line="805" selection-start-column="37" selection-end-line="805" selection-end-column="37" />
+            <state relative-caret-position="236">
+              <caret line="806" column="28" lean-forward="true" selection-start-line="806" selection-start-column="28" selection-end-line="806" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#generate#0;class#Player180223545#0" />
@@ -227,8 +223,8 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="19" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="36" />
     <option name="y" value="23" />
     <option name="width" value="1242" />
     <option name="height" value="777" />
@@ -296,12 +292,12 @@
       <workItem from="1550608041866" duration="11868000" />
       <workItem from="1550670117507" duration="5125000" />
       <workItem from="1550759773894" duration="7415000" />
-      <workItem from="1550849078041" duration="6939000" />
+      <workItem from="1550849078041" duration="7059000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102759000" />
+    <option name="totallyTimeSpent" value="102879000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="36" y="23" width="1242" height="777" extended-state="6" />
@@ -429,8 +425,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Player180223545.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="805" column="37" selection-start-line="805" selection-start-column="37" selection-end-line="805" selection-end-column="37" />
+        <state relative-caret-position="236">
+          <caret line="806" column="28" lean-forward="true" selection-start-line="806" selection-start-column="28" selection-end-line="806" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#generate#0;class#Player180223545#0" />
