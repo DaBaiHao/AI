@@ -272,9 +272,19 @@ public class Player180223545 extends GomokuPlayer {
         }else if(winner == 3) {
             // winner 3 is draw
             return -10;
-        }else {
+        }
+            Color other = Color.black;
+            if(me == Color.black){
+                other = Color.white;
+            }else {
+                other = Color.black;
+            }
+
             // winner 0 is not over
             int score_us = 0;
+
+            // other score
+            int score_other = 0;
 
             // search all board
             for(int i=0;i<8;i++){
@@ -284,6 +294,9 @@ public class Player180223545 extends GomokuPlayer {
 
                 // num of connect chese
                 int us_num_connect = 0;
+
+                int is_other_side = 0;
+                int other_num_connect = 0;
 
                 for(int j=0;j<8;j++) {
 
@@ -296,11 +309,28 @@ public class Player180223545 extends GomokuPlayer {
                         }
                     }
 
+                    // find other chess
+                    if (board[i][j] == other) {
+                        other_num_connect++;
+                        // check if on side
+                        if(j == 0 ||j == 7){
+                            is_other_side ++;
+                        }
+                    }
+
                     // check if others chess
                     if (board[i][j] != me && board[i][j] != null ) {
                         // check if on side
                         if(us_num_connect != 0){
                             is_me_side ++;
+                        }
+                    }
+
+                    // check if our chess
+                    if (board[i][j] == me ) {
+                        // check if on side
+                        if(other_num_connect != 0){
+                            is_other_side ++;
                         }
                     }
 
@@ -312,6 +342,16 @@ public class Player180223545 extends GomokuPlayer {
                         us_num_connect = 0;
                     }
 
+                    // other
+                    // if no chess check if is stopped or the last one of the col
+                    if(board[i][j] == null || j == 7||((board[i][j] == me))){
+                        // calculate score
+                        score_other += calculate_score(other_num_connect,is_other_side);
+                        is_other_side = 0;
+                        other_num_connect = 0;
+                    }
+
+
 
                 }
 
@@ -319,6 +359,11 @@ public class Player180223545 extends GomokuPlayer {
                 is_me_side = 0;
 
                 // num of connect chese
+
+                // shu
+                is_other_side = 0;
+                other_num_connect = 0;
+
                 us_num_connect = 0;
                 for(int j=0;j< 8;j++){
 
@@ -333,6 +378,17 @@ public class Player180223545 extends GomokuPlayer {
                     }
 
 
+                    // if is others
+                    if (board[j][i] == other) {
+                        other_num_connect++;
+                        // check if on side
+                        // because j i 00 70 is side
+                        if(j == 0 ||j == 7){
+                            is_other_side ++;
+                        }
+                    }
+
+
                     // check if others chess
                     if (board[j][i] != me && board[j][i] != null ) {
                         // check if on side
@@ -340,6 +396,15 @@ public class Player180223545 extends GomokuPlayer {
                             is_me_side ++;
                         }
                     }
+
+                    // check if our chess
+                    if (board[j][i] == me ) {
+                        // check if on side
+                        if(other_num_connect != 0){
+                            is_other_side ++;
+                        }
+                    }
+
 
                     // if no chess check if is stopped or the last one of the col
                     if(board[j][i] == null || j == 7 ||((board[j][i] != me && board[j][i] != null))){
@@ -349,168 +414,316 @@ public class Player180223545 extends GomokuPlayer {
                         us_num_connect = 0;
                     }
 
+
+                    // other
+                    // if no chess check if is stopped or the last one of the col
+                    if(board[j][i] == null || j == 7 ||((board[j][i] == me))){
+                        // calculate score
+                        score_other += calculate_score(other_num_connect,is_other_side);
+                        is_other_side = 0;
+                        other_num_connect = 0;
+                    }
+
+
                 }
 
-//                // check side
-//                is_me_side = 0;
+                // check side
+                is_me_side = 0;
+
+                // num of connect chese
+                us_num_connect = 0;
+
+                is_other_side = 0;
+                other_num_connect = 0;
+
+                /**
+                 * attention half ---left up----to----right down---
+                 * '\'left
+                 */
+                // attention half
+                for(int j=0;i+j< 8;j++){
+                    // find our chess
+                    if (board[i+j][j] == me) {
+                        us_num_connect++;
+                        // check if on side
+                        if(j == 0 ||i+j == 7 ){
+                            is_me_side ++;
+                        }
+                    }
+
+                    // find other chess
+                    if (board[i+j][j] == other) {
+                        other_num_connect++;
+                        // check if on side
+                        if(j == 0 ||i+j == 7 ){
+                            is_other_side ++;
+                        }
+                    }
+
+
+                    // check if others chess
+                    if (board[i+j][j] != me && board[i+j][j] != null ) {
+                        // check if on side
+                        if(us_num_connect != 0){
+                            is_me_side ++;
+                        }
+                    }
+
+                    // check if my chess
+                    if (board[i+j][j] == me ) {
+                        // check if on side
+                        if(other_num_connect != 0){
+                            is_other_side ++;
+                        }
+                    }
+
+
+                    // if no chess check if is stopped or the last one of the col
+                    if(board[i+j][j] == null || (i+j == 7)||((board[i+j][j] != me && board[i+j][j] != null))){
+                        // calculate score
+                        score_us += calculate_score(us_num_connect,is_me_side);
+                        is_me_side = 0;
+                        us_num_connect = 0;
+                    }
+
+                    // other
+                    // if no chess check if is stopped or the last one of the col
+                    if(board[i+j][j] == null || (i+j == 7)||((board[i+j][j] == me))){
+                        // calculate score
+                        score_other += calculate_score(other_num_connect,is_other_side);
+                        is_other_side = 0;
+                        other_num_connect = 0;
+                    }
+
+
+                }
+                // above no error
+
+                // check side
+                is_me_side = 0;
+
+                // num of connect chese
+                us_num_connect = 0;
+
+                is_other_side = 0;
+                other_num_connect = 0;
+
+                /**
+                 * attention another half ---left up----to----right down---
+                 */
+                // attention half
+                for(int j=0;i+j< 8;j++){
+                    // find our chess
+                    if (board[j][i+j] == me) {
+                        us_num_connect++;
+                        // check if on side
+                        if(j == 0 ||j+i == 7 ){
+                            is_me_side ++;
+                        }
+                    }
+
+                    // find other chess
+                    if (board[j][i+j] == other) {
+                        other_num_connect++;
+                        // check if on side
+                        if(j == 0 ||j+i == 7 ){
+                            is_other_side ++;
+                        }
+                    }
+
+                    // check if others chess
+                    if (board[j][j+i] != me && board[j][j+i] != null ) {
+                        // check if on side
+                        if(us_num_connect != 0){
+                            is_me_side ++;
+                        }
+                    }
+
+                    // check if my chess
+                    if (board[j][j+i] == me ) {
+                        // check if on side
+                        if(other_num_connect != 0){
+                            is_other_side ++;
+                        }
+                    }
+
+
+                    // if no chess check if is stopped or the last one of the col
+                    if(board[j][i+j] == null || i+j == 7||((board[j][i+j] != me &&board[j][i+j] != null))){
+                        // calculate score
+                        score_us += calculate_score(us_num_connect,is_me_side);
+                        is_me_side = 0;
+                        us_num_connect = 0;
+                    }
+
+                    // other
+                    // if no chess check if is stopped or the last one of the col
+                    if(board[j][i+j] == null || i+j == 7||((board[j][i+j] == me))){
+                        // calculate score
+                        score_other += calculate_score(other_num_connect,is_other_side);
+                        is_other_side = 0;
+                        other_num_connect = 0;
+                    }
+
+                }
+
+                // check side
+                is_me_side = 0;
+
+                // num of connect chese
+                us_num_connect = 0;
+
+                is_other_side = 0;
+                other_num_connect = 0;
+
+                /**
+                 * '/'
+                 * attention another half ---left up----to----right down---
+                 */
+                // attention half
+                for(int j=0;i-j>=0;j++){
+                    // find our chess
+                    if (board[j][i-j] == me) {
+                        us_num_connect++;
+                        // check if on side
+                        if(j == 0 ||i-j == 0 ){
+                            is_me_side ++;
+                        }
+                    }
+
+                    // find other chess
+                    if (board[j][i-j] == other) {
+                        other_num_connect++;
+                        // check if on side
+                        if(j == 0 ||i-j == 0 ){
+                            is_other_side ++;
+                        }
+                    }
+
+
+                    // check if others chess
+                    if (board[j][i-j] != me && board[j][i-j] != null ) {
+                        // check if on side
+                        if(us_num_connect != 0){
+                            is_me_side ++;
+                        }
+                    }
+
+                    // check if my chess
+                    if (board[j][i-j] == me ) {
+                        // check if on side
+                        if(other_num_connect != 0){
+                            is_other_side ++;
+                        }
+                    }
+
+                    // if no chess check if is stopped or the last one of the col
+                    if(board[j][i-j] == null || i-j == 7||((board[j][i-j] != me &&board[j][i-j] != null))){
+                        // calculate score
+                        score_us += calculate_score(us_num_connect,is_me_side);
+                        is_me_side = 0;
+                        us_num_connect = 0;
+                    }
+
+                    // other
+                    // if no chess check if is stopped or the last one of the col
+                    if(board[j][i-j] == null || i-j == 7||((board[j][i-j] == me))){
+                        // calculate score
+                        score_other += calculate_score(other_num_connect,is_other_side);
+                        is_other_side = 0;
+                        other_num_connect = 0;
+                    }
+
+
+
+                }
 //
-//                // num of connect chese
-//                us_num_connect = 0;
-//                /**
-//                 * attention half ---left up----to----right down---
-//                 */
-//                // attention half
-//                for(int j=0;i+j< 8;j++){
-//                    // find our chess
-//                    if (board[i+j][j] == me) {
-//                        us_num_connect++;
-//                        // check if on side
-//                        if(j == 0 ||j+i == 7 ){
-//                            is_me_side ++;
-//                        }
-//                    }
-//
-//                    // check if others chess
-//                    if (board[i+j][j] != me && board[i+j][j] != null ) {
-//                        // check if on side
-//                        if(us_num_connect != 0){
-//                            is_me_side ++;
-//                        }
-//                    }
-//
-//                    // if no chess check if is stopped or the last one of the col
-//                    if(board[i+j][j] == null || i+j == 7||((board[j+i][j] != me &&board[i+j][j] != null))){
-//                        // calculate score
-//                        score_us += calculate_score(us_num_connect,is_me_side);
-//                        is_me_side = 0;
-//                        us_num_connect = 0;
-//                    }
-//
-//                }
-//
-//                // check side
-//                is_me_side = 0;
-//
-//                // num of connect chese
-//                us_num_connect = 0;
-//                /**
-//                 * attention another half ---left up----to----right down---
-//                 */
-//                // attention half
-//                for(int j=0;j< 8;j++){
-//                    // find our chess
-//                    if (board[j][i+j] == me) {
-//                        us_num_connect++;
-//                        // check if on side
-//                        if(j == 0 ||j+i == 7 ){
-//                            is_me_side ++;
-//                        }
-//                    }
-//
-//                    // check if others chess
-//                    if (board[j][j+i] != me && board[j][j+i] != null ) {
-//                        // check if on side
-//                        if(us_num_connect != 0){
-//                            is_me_side ++;
-//                        }
-//                    }
-//
-//
-//                    // if no chess check if is stopped or the last one of the col
-//                    if(board[j][i+j] == null || i+j == 7||((board[j][i+j] != me &&board[j][i+j] != null))){
-//                        // calculate score
-//                        score_us += calculate_score(us_num_connect,is_me_side);
-//                        is_me_side = 0;
-//                        us_num_connect = 0;
-//                    }
-//                }
-//
-//                // check side
-//                is_me_side = 0;
-//
-//                // num of connect chese
-//                us_num_connect = 0;
-//                /**
-//                 * attention another half ---left up----to----right down---
-//                 */
-//                // attention half
-//                for(int j=0;i-j>=0;j++){
-//                    // find our chess
-//                    if (board[j][i-j] == me) {
-//                        us_num_connect++;
-//                        // check if on side
-//                        if(j == 0 ||i-j == 0 ){
-//                            is_me_side ++;
-//                        }
-//                    }
-//
-//                    // check if others chess
-//                    if (board[j][i-j] != me && board[j][i-j] != null ) {
-//                        // check if on side
-//                        if(us_num_connect != 0){
-//                            is_me_side ++;
-//                        }
-//                    }
-//
-//                    // if no chess check if is stopped or the last one of the col
-//                    if(board[j][i-j] == null || i-j == 7||((board[j][i-j] != me &&board[j][i-j] != null))){
-//                        // calculate score
-//                        score_us += calculate_score(us_num_connect,is_me_side);
-//                        is_me_side = 0;
-//                        us_num_connect = 0;
-//                    }
-//
-//                }
-//
-//                // check side
-//                is_me_side = 0;
-//
-//                // num of connect chese
-//                us_num_connect = 0;
-//                /**
-//                 * attention another half ---left up----to----right down---
-//                 */
-//                // attention half
-//                for(int j=0;i+j<8;j++){
-//
-//                    // find our chess
-//                    if (board[i+j][7-j] == me) {
-//                        us_num_connect++;
-//                        // check if on side
-//                        if(j == 0 ||i+j == 7 ){
-//                            is_me_side ++;
-//                        }
-//                    }
-//                    // check if others chess
-//                    if (board[i+j][7-j] != me && board[i+j][7-j] != null ) {
-//                        // check if on side
-//                        if(us_num_connect != 0){
-//                            is_me_side ++;
-//                        }
-//                    }
-//                    // if no chess check if is stopped or the last one of the col
-//                    if(board[i+j][7-j] == null || i+j == 7||((board[i+j][7-j] != me &&board[i+j][7-j] != null))){
-//                        // calculate score
-//                        score_us += calculate_score(us_num_connect,is_me_side);
-//                        is_me_side = 0;
-//                        us_num_connect = 0;
-//                    }
-//
-//                }
+                // check side
+                is_me_side = 0;
+
+                // num of connect chese
+                us_num_connect = 0;
+
+                is_other_side = 0;
+                other_num_connect = 0;
+
+                /**
+                 * '/'right
+                 */
+                // attention half
+                for(int j=0;i+j<8;j++){
+
+                    // find our chess
+                    if (board[i+j][7-j] == me) {
+                        us_num_connect++;
+                        // check if on side
+                        if(j == 0 ||i+j == 7 ){
+                            is_me_side ++;
+                        }
+                    }
+
+                    // find other chess
+                    if (board[i+j][7-j] == other) {
+                        other_num_connect++;
+                        // check if on side
+                        if(j == 0 ||i+j == 7 ){
+                            is_other_side ++;
+                        }
+                    }
+
+                    // check if others chess
+                    if (board[i+j][7-j] != me && board[i+j][7-j] != null ) {
+                        // check if on side
+                        if(us_num_connect != 0){
+                            is_me_side ++;
+                        }
+                    }
+
+                    // check if others chess
+                    if (board[i+j][7-j] == me ) {
+                        // check if on side
+                        if(other_num_connect != 0){
+                            is_other_side ++;
+                        }
+                    }
+
+                    // if no chess check if is stopped or the last one of the col
+                    if(board[i+j][7-j] == null || i+j == 7||((board[i+j][7-j] != me &&board[i+j][7-j] != null))){
+                        // calculate score
+                        score_us += calculate_score(us_num_connect,is_me_side);
+                        is_me_side = 0;
+                        us_num_connect = 0;
+                    }
+
+                    // other
+                    // if no chess check if is stopped or the last one of the col
+                    if(board[i+j][7-j] == null || i+j == 7||((board[i+j][7-j] == me))){
+                        // calculate score
+                        score_other += calculate_score(other_num_connect,is_other_side);
+                        is_other_side = 0;
+                        other_num_connect = 0;
+                    }
+
+
+                }
 
             }
-            Color other = Color.black;
-            if(me == Color.black){
-                other = Color.white;
-            }else {
-                other = Color.black;
-            }
+
+
+
+
+
+
+
+
+
+
             // int other_score = value_function(board, other);
-            // int return_value = score_us - other_score;
-            return score_us;
+            int return_value = score_us + score_other;
+            return return_value;
 
 
-        }
+
 
 
 

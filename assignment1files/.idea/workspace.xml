@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4611fe15-f65b-490d-89c0-e1c19176ddcd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Check.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GomokuReferee.class" beforeDir="false" afterPath="$PROJECT_DIR$/GomokuReferee.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Player180223545.class" beforeDir="false" afterPath="$PROJECT_DIR$/Player180223545.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Player180223545.java" beforeDir="false" afterPath="$PROJECT_DIR$/Player180223545.java" afterDir="false" />
     </list>
@@ -52,22 +50,23 @@
     <session id="1194088677">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.15" value="1" />
           <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.17" value="1" />
+          <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="2216" />
+          <entry key="java" value="2659" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2216" />
+          <entry key="JAVA" value="2659" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -90,7 +89,7 @@
         <entry file="file://$PROJECT_DIR$/RandomPlayer.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="144">
-              <caret line="6" column="23" lean-forward="true" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
+              <caret line="6" column="23" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -98,7 +97,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Agent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-10634">
+            <state relative-caret-position="888">
               <caret line="38" column="40" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
               <folding>
                 <element signature="method#valuation_function#0;class#Agent#0" />
@@ -115,19 +114,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Player180223545.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="543">
-              <caret line="126" column="49" selection-start-line="126" selection-start-column="49" selection-end-line="126" selection-end-column="49" />
+            <state relative-caret-position="261">
+              <caret line="270" column="22" lean-forward="true" selection-start-line="270" selection-start-column="22" selection-end-line="270" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#generate#0;class#Player180223545#0" />
+                <element signature="method#alpha_beta_min_max#0;class#Player180223545#0" />
                 <element signature="method#min#0;class#Player180223545#0" />
-                <element signature="method#value_function#0;class#Player180223545#0" />
-                <element signature="method#calculate_score#0;class#Player180223545#0" />
-                <element signature="method#is_Game_Over#0;class#Player180223545#0" />
-                <element signature="method#search_right#0;class#Player180223545#0" />
-                <element signature="method#search_down#0;class#Player180223545#0" />
-                <element signature="method#search_down_right#0;class#Player180223545#0" />
-                <element signature="method#search_down_left#0;class#Player180223545#0" />
               </folding>
             </state>
           </provider>
@@ -137,7 +130,7 @@
         <entry file="file://$PROJECT_DIR$/Check.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="3480">
-              <caret line="145" column="17" lean-forward="true" selection-start-line="145" selection-start-column="17" selection-end-line="145" selection-end-column="17" />
+              <caret line="145" column="17" selection-start-line="145" selection-start-column="17" selection-end-line="145" selection-end-column="17" />
               <folding>
                 <element signature="method#search_right#0;class#Check#0" />
                 <element signature="method#search_down#0;class#Check#0" />
@@ -155,16 +148,14 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HumanPlayer.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-198" />
-          </provider>
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GomokuBoard.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1373">
-              <caret line="99" column="17" lean-forward="true" selection-start-line="99" selection-start-column="17" selection-end-line="99" selection-end-column="17" />
+            <state relative-caret-position="2376">
+              <caret line="99" column="17" selection-start-line="99" selection-start-column="17" selection-end-line="99" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -218,7 +209,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="19" />
     <option name="y" value="23" />
     <option name="width" value="1242" />
@@ -232,6 +223,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -243,14 +236,12 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550845593389" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550849062155" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -286,18 +277,19 @@
       <workItem from="1550575213376" duration="10849000" />
       <workItem from="1550608041866" duration="11868000" />
       <workItem from="1550670117507" duration="5125000" />
-      <workItem from="1550759773894" duration="5603000" />
+      <workItem from="1550759773894" duration="7415000" />
+      <workItem from="1550849078041" duration="2184000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94008000" />
+    <option name="totallyTimeSpent" value="98004000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="19" y="23" width="1242" height="777" extended-state="0" />
+    <frame x="36" y="23" width="1242" height="777" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.093333334" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.094166666" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -347,15 +339,26 @@
     <entry file="file://$PROJECT_DIR$/Move.class">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Agent.class">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/Player180223545.class">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/GomokuReferee.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9629">
+          <caret line="70" column="51" selection-start-line="70" selection-start-column="51" selection-end-line="70" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RandomPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="6" column="23" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Agent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-10634">
+        <state relative-caret-position="888">
           <caret line="38" column="40" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
           <folding>
             <element signature="method#valuation_function#0;class#Agent#0" />
@@ -368,42 +371,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GomokuReferee.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9629">
-          <caret line="70" column="51" selection-start-line="70" selection-start-column="51" selection-end-line="70" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HumanPlayer.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-198" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RandomPlayer.class">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RandomPlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="6" column="23" lean-forward="true" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GomokuPlayer.class">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GomokuBoard.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1373">
-          <caret line="99" column="17" lean-forward="true" selection-start-line="99" selection-start-column="17" selection-end-line="99" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Check.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3480">
-          <caret line="145" column="17" lean-forward="true" selection-start-line="145" selection-start-column="17" selection-end-line="145" selection-end-column="17" />
+          <caret line="145" column="17" selection-start-line="145" selection-start-column="17" selection-end-line="145" selection-end-column="17" />
           <folding>
             <element signature="method#search_right#0;class#Check#0" />
             <element signature="method#search_down#0;class#Check#0" />
@@ -413,21 +384,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/GomokuPlayer.class">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HumanPlayer.class">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GomokuBoard.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2376">
+          <caret line="99" column="17" selection-start-line="99" selection-start-column="17" selection-end-line="99" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RandomPlayer.class">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Agent.class">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/Player180223545.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="543">
-          <caret line="126" column="49" selection-start-line="126" selection-start-column="49" selection-end-line="126" selection-end-column="49" />
+        <state relative-caret-position="261">
+          <caret line="270" column="22" lean-forward="true" selection-start-line="270" selection-start-column="22" selection-end-line="270" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#generate#0;class#Player180223545#0" />
+            <element signature="method#alpha_beta_min_max#0;class#Player180223545#0" />
             <element signature="method#min#0;class#Player180223545#0" />
-            <element signature="method#value_function#0;class#Player180223545#0" />
-            <element signature="method#calculate_score#0;class#Player180223545#0" />
-            <element signature="method#is_Game_Over#0;class#Player180223545#0" />
-            <element signature="method#search_right#0;class#Player180223545#0" />
-            <element signature="method#search_down#0;class#Player180223545#0" />
-            <element signature="method#search_down_right#0;class#Player180223545#0" />
-            <element signature="method#search_down_left#0;class#Player180223545#0" />
           </folding>
         </state>
       </provider>
