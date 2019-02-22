@@ -12,6 +12,7 @@ public class Player180223545 extends GomokuPlayer {
      */
     public Move chooseMove(Color[][] board, Color me) {
 
+
         while (true) {
             // check first move
             int our_color_num = 0;
@@ -111,9 +112,17 @@ public class Player180223545 extends GomokuPlayer {
             board[point.x][point.y] = null;
         }
 
-        int random = (int)(Math.random()* bestPoints.size());
-        Point best_Point = bestPoints.get(random);
-        return best_Point;
+        if(bestPoints.size() != 0){
+            int random = (int)(Math.random()* bestPoints.size());
+            Point best_Point = bestPoints.get(random);
+            return best_Point;
+        }else {//
+            int random = (int)(Math.random()* available.size());
+            Point best_Point = available.get(random);
+            return best_Point;
+        }
+
+
         /**
          * here can calculate each point value and then return the best point
          * greedy
@@ -601,19 +610,23 @@ public class Player180223545 extends GomokuPlayer {
                             if(board[i][j+1] == me){
                                 value += search_right(board, i,j+1,me);
                             }
-                           // System.out.println("the is_Game_Over function calculate value is  "+value);
+                            // System.out.println("the is_Game_Over function calculate value is  "+value);
                             if(value == 5){
                                 return 1;
+                            }else {
+                                value = 1;
                             }
                         }
                         if(i + 1 < 8){//down
                             if(board[i +1][j] == me){
                                 value += search_down(board, i+1,j,me);
                             }
-                           // System.out.println("the is_Game_Over function calculate value is  "+value);
+                            // System.out.println("the is_Game_Over function calculate value is  "+value);
 
                             if(value == 5){
                                 return 1;
+                            }else {
+                                value = 1;
                             }
                         }
                         if(j + 1 < 8 && i + 1 <8){//down right
@@ -624,6 +637,8 @@ public class Player180223545 extends GomokuPlayer {
 
                             if(value == 5){
                                 return 1;
+                            }else {
+                                value = 1;
                             }
                         }
                         if(j - 1 >= 0 && i + 1 <8){//down left
@@ -634,6 +649,8 @@ public class Player180223545 extends GomokuPlayer {
 
                             if(value == 5){
                                 return 1;
+                            }else {
+                                value = 1;
                             }
                         }
 
@@ -654,6 +671,8 @@ public class Player180223545 extends GomokuPlayer {
 
                             if(value == 5){
                                 return 2;
+                            }else {
+                                value = 1;
                             }
                         }
                         if(i + 1 < 8){//down
@@ -664,16 +683,20 @@ public class Player180223545 extends GomokuPlayer {
 
                             if(value == 5){
                                 return 2;
+                            }else {
+                                value = 1;
                             }
                         }
                         if(j + 1 < 8 && i + 1 <8){//down right
                             if(board[i+1][i+1] == other){
                                 value += search_down_right(board, i + 1,j + 1,other);
                             }
-                           // System.out.println("the is_Game_Over function calculate other value is  "+value);
+                            // System.out.println("the is_Game_Over function calculate other value is  "+value);
 
                             if(value == 5){
                                 return 2;
+                            }else {
+                                value = 1;
                             }
                         }
                         if(j - 1 >= 0 && i + 1 <8){//down left
@@ -684,6 +707,8 @@ public class Player180223545 extends GomokuPlayer {
 
                             if(value == 5){
                                 return 2;
+                            }else {
+                                value = 1;
                             }
                         }
 
@@ -743,4 +768,13 @@ public class Player180223545 extends GomokuPlayer {
         }
         return value;
     }
+
+
+
+
+
+
+
+
+
 }
