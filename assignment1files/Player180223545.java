@@ -1,6 +1,14 @@
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ *
+ * @author : BAI
+ * @agentName : BlphaGomoku
+ * @version :1.0
+ *
+ *
+ */
 public class Player180223545 extends GomokuPlayer {
 
 
@@ -36,7 +44,7 @@ public class Player180223545 extends GomokuPlayer {
                 //return new Move(i, j);
             }
 
-            Point best = alpha_beta_min_max(board, me, 3);
+            Point best = alpha_beta_min_max(board, me, 4);
             return new Move(best.x, best.y);
 
         }
@@ -132,7 +140,7 @@ public class Player180223545 extends GomokuPlayer {
                 if (this_point_value > best_point_value) {
                     // clear list
                     bestPoints_final.clear();
-                    System.out.println(bestPoints_final.size());
+                    //System.out.println(bestPoints_final.size());
                     // add point
                     bestPoints_final.add(point);
                     // best is this
@@ -173,7 +181,7 @@ public class Player180223545 extends GomokuPlayer {
                 if (this_point_value > best_point_value) {
                     // clear list
                     bestPoints_final.clear();
-                    System.out.println(bestPoints_final.size());
+                    // System.out.println(bestPoints_final.size());
                     // add point
                     bestPoints_final.add(point);
                     // best is this
@@ -309,7 +317,7 @@ public class Player180223545 extends GomokuPlayer {
      * @return
      */
     public static int value_function(Color[][] board, Color me) {
-        System.out.println("###################################");
+        // System.out.println("###################################");
 
         int score_us = 0;
 

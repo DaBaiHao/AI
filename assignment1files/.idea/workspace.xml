@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4611fe15-f65b-490d-89c0-e1c19176ddcd" name="Default Changelist" comment="" />
+    <list default="true" id="4611fe15-f65b-490d-89c0-e1c19176ddcd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player180223545.class" beforeDir="false" afterPath="$PROJECT_DIR$/Player180223545.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player180223545.java" beforeDir="false" afterPath="$PROJECT_DIR$/Player180223545.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,7 +22,8 @@
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.6" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.open.time.8" value="1" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -34,12 +40,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="5612" />
+          <entry key="java" value="5810" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="5612" />
+          <entry key="JAVA" value="5810" />
         </counts>
       </usages-collector>
     </session>
@@ -93,7 +99,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Agent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="49">
+            <state relative-caret-position="4368">
               <caret line="545" column="76" selection-start-line="545" selection-start-column="76" selection-end-line="545" selection-end-column="76" />
               <folding>
                 <element signature="method#is_Game_Over#0;class#Agent#0" />
@@ -112,16 +118,16 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Player180223545.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="806" column="28" lean-forward="true" selection-start-line="806" selection-start-column="28" selection-end-line="806" selection-end-column="28" />
+            <state relative-caret-position="336">
+              <caret line="14" column="7" lean-forward="true" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#generate#0;class#Player180223545#0" />
+                <element signature="e#1412#1419#0" expanded="true" />
                 <element signature="method#alpha_beta_min_max#0;class#Player180223545#0" />
-                <element signature="e#3476#3483#0" expanded="true" />
-                <element signature="e#3586#3593#0" expanded="true" />
-                <element signature="method#min#0;class#Player180223545#0" />
-                <element signature="method#value_function#0;class#Player180223545#0" />
+                <element signature="e#2126#2133#0" expanded="true" />
+                <element signature="e#3479#3486#0" expanded="true" />
+                <element signature="e#5067#5074#0" expanded="true" />
+                <element signature="method#calculate_score#0;class#Player180223545#0" />
                 <element signature="method#is_Game_Over#0;class#Player180223545#0" />
                 <element signature="method#search_right#0;class#Player180223545#0" />
                 <element signature="method#search_down#0;class#Player180223545#0" />
@@ -139,7 +145,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Check.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
+            <state relative-caret-position="768">
               <caret line="179" column="22" selection-start-line="179" selection-start-column="22" selection-end-line="179" selection-end-column="22" />
               <folding>
                 <element signature="method#is_Game_Over#0;class#Check#0" />
@@ -197,6 +203,7 @@
     <findStrings>
       <find>array</find>
       <find>valuation_function</find>
+      <find>Sy</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -223,9 +230,9 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="36" />
-    <option name="y" value="23" />
+    <option name="y" value="22" />
     <option name="width" value="1242" />
     <option name="height" value="777" />
   </component>
@@ -293,17 +300,18 @@
       <workItem from="1550670117507" duration="5125000" />
       <workItem from="1550759773894" duration="7415000" />
       <workItem from="1550849078041" duration="7059000" />
+      <workItem from="1550869176096" duration="3878000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102879000" />
+    <option name="totallyTimeSpent" value="106757000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="36" y="23" width="1242" height="777" extended-state="6" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.094166666" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.05982215" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -318,7 +326,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.037956204" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.024911031" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Messages" order="11" />
@@ -370,6 +378,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Agent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4368">
+          <caret line="545" column="76" selection-start-line="545" selection-start-column="76" selection-end-line="545" selection-end-column="76" />
+          <folding>
+            <element signature="method#is_Game_Over#0;class#Agent#0" />
+            <element signature="method#valuation_function#0;class#Agent#0" />
+            <element signature="method#calculate_score#0;class#Agent#0" />
+            <element signature="method#generate#0;class#Agent#0" />
+            <element signature="method#minmax#0;class#Agent#0" />
+            <element signature="method#get_value#0;class#Agent#0" />
+            <element signature="method#search_left#0;class#Agent#0" />
+            <element signature="method#search_down_right#0;class#Agent#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Check.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="768">
+          <caret line="179" column="22" selection-start-line="179" selection-start-column="22" selection-end-line="179" selection-end-column="22" />
+          <folding>
+            <element signature="method#is_Game_Over#0;class#Check#0" />
+            <element signature="method#search_left#0;class#Check#0" />
+            <element signature="method#search_up#0;class#Check#0" />
+            <element signature="method#search_up_left#0;class#Check#0" />
+            <element signature="method#search_up_right#0;class#Check#0" />
+            <element signature="method#search_down#0;class#Check#0" />
+            <element signature="method#search_down_right#0;class#Check#0" />
+            <element signature="method#search_down_left#0;class#Check#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GomokuPlayer.class">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/HumanPlayer.class">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -386,55 +431,18 @@
     <entry file="file://$PROJECT_DIR$/Agent.class">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/GomokuPlayer.class">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Check.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="179" column="22" selection-start-line="179" selection-start-column="22" selection-end-line="179" selection-end-column="22" />
-          <folding>
-            <element signature="method#is_Game_Over#0;class#Check#0" />
-            <element signature="method#search_left#0;class#Check#0" />
-            <element signature="method#search_up#0;class#Check#0" />
-            <element signature="method#search_up_left#0;class#Check#0" />
-            <element signature="method#search_up_right#0;class#Check#0" />
-            <element signature="method#search_down#0;class#Check#0" />
-            <element signature="method#search_down_right#0;class#Check#0" />
-            <element signature="method#search_down_left#0;class#Check#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Agent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="49">
-          <caret line="545" column="76" selection-start-line="545" selection-start-column="76" selection-end-line="545" selection-end-column="76" />
-          <folding>
-            <element signature="method#is_Game_Over#0;class#Agent#0" />
-            <element signature="method#valuation_function#0;class#Agent#0" />
-            <element signature="method#calculate_score#0;class#Agent#0" />
-            <element signature="method#generate#0;class#Agent#0" />
-            <element signature="method#minmax#0;class#Agent#0" />
-            <element signature="method#get_value#0;class#Agent#0" />
-            <element signature="method#search_left#0;class#Agent#0" />
-            <element signature="method#search_down_right#0;class#Agent#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Player180223545.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="806" column="28" lean-forward="true" selection-start-line="806" selection-start-column="28" selection-end-line="806" selection-end-column="28" />
+        <state relative-caret-position="336">
+          <caret line="14" column="7" lean-forward="true" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#generate#0;class#Player180223545#0" />
+            <element signature="e#1412#1419#0" expanded="true" />
             <element signature="method#alpha_beta_min_max#0;class#Player180223545#0" />
-            <element signature="e#3476#3483#0" expanded="true" />
-            <element signature="e#3586#3593#0" expanded="true" />
-            <element signature="method#min#0;class#Player180223545#0" />
-            <element signature="method#value_function#0;class#Player180223545#0" />
+            <element signature="e#2126#2133#0" expanded="true" />
+            <element signature="e#3479#3486#0" expanded="true" />
+            <element signature="e#5067#5074#0" expanded="true" />
+            <element signature="method#calculate_score#0;class#Player180223545#0" />
             <element signature="method#is_Game_Over#0;class#Player180223545#0" />
             <element signature="method#search_right#0;class#Player180223545#0" />
             <element signature="method#search_down#0;class#Player180223545#0" />
