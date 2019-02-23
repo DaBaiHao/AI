@@ -5,7 +5,7 @@ import java.util.ArrayList;
  *
  * @author : BAI
  * @agentName : BlphaGomoku
- * @version :1.0
+ * @version :v1.0
  *
  *
  */
@@ -75,6 +75,8 @@ public class Player180223545 extends GomokuPlayer {
     }
 
     /**
+     * The main function to calculate which point is better
+     * using minmax algorithm, and alpha beta prunning
      * @param board
      * @param me
      * @return
@@ -120,6 +122,26 @@ public class Player180223545 extends GomokuPlayer {
             // make the board back to previous
             board[point.x][point.y] = null;
         }
+
+//        if (bestPoints.size() != 0) {
+//            int random_final = (int) (Math.random() * bestPoints.size());
+//            Point best_Point = bestPoints.get(random_final);
+//            return best_Point;
+//        }else {
+//            bestPoints = generate(board);
+//            int random_final = (int) (Math.random() * bestPoints.size());
+//            Point best_Point = bestPoints.get(random_final);
+//            return best_Point;
+//        }
+
+
+
+
+
+        /**
+         * the code blow more smart but cost time
+         */
+
 
         if (bestPoints.size() != 0) {
             // int random = (int) (Math.random() * bestPoints.size());
@@ -214,6 +236,7 @@ public class Player180223545 extends GomokuPlayer {
 
 
     /**
+     *
      * @param board
      * @param me
      * @param deep
@@ -307,9 +330,9 @@ public class Player180223545 extends GomokuPlayer {
 
     /**
      * value function
-     * return  100000 is our   win
-     * return -100000 is other win
-     * return       0 is       draw
+     * return the value sum 100000 is our win
+     * return the value sum -100000 is other win
+     * return       -10 is       draw
      * return
      *
      * @param board
@@ -799,9 +822,9 @@ public class Player180223545 extends GomokuPlayer {
                 } else if (us_num_connect == 2) {
                     score_us += 10;
                 } else if (us_num_connect == 3) {
-                    score_us += 100;
+                    score_us += 500;
                 } else if (us_num_connect == 4) {
-                    score_us += 9999;
+                    score_us += 10000;
                 } else if (us_num_connect == 5) {
                     score_us += 100000000;
                 }
@@ -822,7 +845,7 @@ public class Player180223545 extends GomokuPlayer {
                 } else if (us_num_connect == 3) {
                     score_us += 9900;
                 } else if (us_num_connect == 4) {
-                    score_us += 10000;
+                    score_us += 10099;
                 } else if (us_num_connect == 5) {
                     score_us += 100000000;
                 }
@@ -841,6 +864,10 @@ public class Player180223545 extends GomokuPlayer {
 
 
     /**
+     * calculate if the game is over
+     * return 0 not over
+     * return 1 we win
+     * return 2 other win
      * @param board
      * @param me
      * @return
@@ -986,6 +1013,14 @@ public class Player180223545 extends GomokuPlayer {
 
     }
 
+    /**
+     *
+     * @param board
+     * @param row
+     * @param col
+     * @param me
+     * @return
+     */
     public static int search_right(Color[][] board, int row, int col, Color me) {
         int value = 1;
         if (col + 1 < 8) {
@@ -996,6 +1031,14 @@ public class Player180223545 extends GomokuPlayer {
         return value;
     }
 
+    /**
+     *
+     * @param board
+     * @param row
+     * @param col
+     * @param me
+     * @return
+     */
     public static int search_down(Color[][] board, int row, int col, Color me) {
         int value = 1;
         if (row + 1 < 8) {
@@ -1006,6 +1049,14 @@ public class Player180223545 extends GomokuPlayer {
         return value;
     }
 
+    /**
+     *
+     * @param board
+     * @param row
+     * @param col
+     * @param me
+     * @return
+     */
     public static int search_down_right(Color[][] board, int row, int col, Color me) {
         int value = 1;
         if (col + 1 < 8 && row + 1 < 8) {
@@ -1016,6 +1067,14 @@ public class Player180223545 extends GomokuPlayer {
         return value;
     }
 
+    /**
+     *
+     * @param board
+     * @param row
+     * @param col
+     * @param me
+     * @return
+     */
     public static int search_down_left(Color[][] board, int row, int col, Color me) {
         int value = 1;
         if (col - 1 >= 0 && row + 1 < 8) {
@@ -1026,6 +1085,14 @@ public class Player180223545 extends GomokuPlayer {
         return value;
     }
 
+    /**
+     *
+     * @param board
+     * @param row
+     * @param col
+     * @param me
+     * @return
+     */
     public static int search_left(Color[][] board,int row, int col, Color me){
         int value = 1;
         if(col - 1 >= 0){
@@ -1036,6 +1103,14 @@ public class Player180223545 extends GomokuPlayer {
         return value;
     }
 
+    /**
+     *
+     * @param board
+     * @param row
+     * @param col
+     * @param me
+     * @return
+     */
     public static int search_up(Color[][] board,int row, int col, Color me){
         int value = 1;
         if(row -1>=0){
@@ -1046,6 +1121,14 @@ public class Player180223545 extends GomokuPlayer {
         return value;
     }
 
+    /**
+     *
+     * @param board
+     * @param row
+     * @param col
+     * @param me
+     * @return
+     */
     public static int search_up_left(Color[][] board,int row, int col, Color me){
         int value = 1;
         if(col - 1 >= 0 && row - 1 >= 0){
@@ -1056,6 +1139,14 @@ public class Player180223545 extends GomokuPlayer {
         return value;
     }
 
+    /**
+     *
+     * @param board
+     * @param row
+     * @param col
+     * @param me
+     * @return
+     */
     public static int search_up_right(Color[][] board,int row, int col, Color me){
         int value = 1;
         if(col + 1 < 8 && row - 1 >= 0){
@@ -1066,6 +1157,14 @@ public class Player180223545 extends GomokuPlayer {
         return value;
     }
 
+    /**
+     * calculate
+     * @param board
+     * @param row
+     * @param col
+     * @param me
+     * @return
+     */
     public static int get_point_value(Color[][] board, int row, int col, Color me) {
 
         Color color = Color.black;
