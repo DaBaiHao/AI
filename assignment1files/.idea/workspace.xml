@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4611fe15-f65b-490d-89c0-e1c19176ddcd" name="Default Changelist" comment="" />
+    <list default="true" id="4611fe15-f65b-490d-89c0-e1c19176ddcd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player180223545.class" beforeDir="false" afterPath="$PROJECT_DIR$/Player180223545.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player180223545.java" beforeDir="false" afterPath="$PROJECT_DIR$/Player180223545.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,29 +22,30 @@
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.open.time.9" value="1" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="class" value="9" />
-          <entry key="java" value="5" />
+          <entry key="java" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="9" />
-          <entry key="JAVA" value="5" />
+          <entry key="JAVA" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="5810" />
+          <entry key="java" value="5816" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="5810" />
+          <entry key="JAVA" value="5816" />
         </counts>
       </usages-collector>
     </session>
@@ -94,8 +99,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Agent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4368">
-              <caret line="545" column="76" selection-start-line="545" selection-start-column="76" selection-end-line="545" selection-end-column="76" />
+            <state relative-caret-position="450">
+              <caret line="545" column="76" lean-forward="true" selection-start-line="545" selection-start-column="76" selection-end-line="545" selection-end-column="76" />
               <folding>
                 <element signature="method#is_Game_Over#0;class#Agent#0" />
                 <element signature="method#valuation_function#0;class#Agent#0" />
@@ -113,16 +118,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Player180223545.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="5" column="16" lean-forward="true" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+            <state relative-caret-position="199">
+              <caret line="213" lean-forward="true" selection-start-line="213" selection-end-line="213" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1412#1419#0" expanded="true" />
                 <element signature="method#alpha_beta_min_max#0;class#Player180223545#0" />
-                <element signature="e#2126#2133#0" expanded="true" />
-                <element signature="e#3479#3486#0" expanded="true" />
-                <element signature="e#5067#5074#0" expanded="true" />
-                <element signature="method#calculate_score#0;class#Player180223545#0" />
+                <element signature="method#min#0;class#Player180223545#0" />
+                <element signature="method#max#0;class#Player180223545#0" />
+                <element signature="method#value_function#0;class#Player180223545#0" />
                 <element signature="method#is_Game_Over#0;class#Player180223545#0" />
                 <element signature="method#search_right#0;class#Player180223545#0" />
                 <element signature="method#search_down#0;class#Player180223545#0" />
@@ -132,6 +135,18 @@
                 <element signature="method#search_up#0;class#Player180223545#0" />
                 <element signature="method#search_up_left#0;class#Player180223545#0" />
                 <element signature="method#search_up_right#0;class#Player180223545#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ABBot.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1477">
+              <caret line="56" column="13" lean-forward="true" selection-start-line="56" selection-start-column="13" selection-end-line="56" selection-end-column="13" />
+              <folding>
+                <element signature="e#0#21969#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -199,6 +214,7 @@
       <find>array</find>
       <find>valuation_function</find>
       <find>Sy</find>
+      <find>System</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -209,6 +225,7 @@
       <list>
         <option value="$PROJECT_DIR$/Agent.java" />
         <option value="$PROJECT_DIR$/Check.java" />
+        <option value="$PROJECT_DIR$/ABBot.java" />
         <option value="$PROJECT_DIR$/Player180223545.java" />
       </list>
     </option>
@@ -227,7 +244,7 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="36" />
-    <option name="y" value="22" />
+    <option name="y" value="21" />
     <option name="width" value="1242" />
     <option name="height" value="777" />
   </component>
@@ -239,8 +256,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -252,6 +267,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -296,16 +313,18 @@
       <workItem from="1550759773894" duration="7415000" />
       <workItem from="1550849078041" duration="7059000" />
       <workItem from="1550869176096" duration="3906000" />
+      <workItem from="1550880240409" duration="2869000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="106785000" />
+    <option name="totallyTimeSpent" value="109654000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.05982215" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15117219" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -320,7 +339,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.024911031" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.024911031" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Messages" order="11" />
@@ -372,23 +391,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Agent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4368">
-          <caret line="545" column="76" selection-start-line="545" selection-start-column="76" selection-end-line="545" selection-end-column="76" />
-          <folding>
-            <element signature="method#is_Game_Over#0;class#Agent#0" />
-            <element signature="method#valuation_function#0;class#Agent#0" />
-            <element signature="method#calculate_score#0;class#Agent#0" />
-            <element signature="method#generate#0;class#Agent#0" />
-            <element signature="method#minmax#0;class#Agent#0" />
-            <element signature="method#get_value#0;class#Agent#0" />
-            <element signature="method#search_left#0;class#Agent#0" />
-            <element signature="method#search_down_right#0;class#Agent#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Check.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="768">
@@ -425,18 +427,43 @@
     <entry file="file://$PROJECT_DIR$/Agent.class">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/Agent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="545" column="76" lean-forward="true" selection-start-line="545" selection-start-column="76" selection-end-line="545" selection-end-column="76" />
+          <folding>
+            <element signature="method#is_Game_Over#0;class#Agent#0" />
+            <element signature="method#valuation_function#0;class#Agent#0" />
+            <element signature="method#calculate_score#0;class#Agent#0" />
+            <element signature="method#generate#0;class#Agent#0" />
+            <element signature="method#minmax#0;class#Agent#0" />
+            <element signature="method#get_value#0;class#Agent#0" />
+            <element signature="method#search_left#0;class#Agent#0" />
+            <element signature="method#search_down_right#0;class#Agent#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ABBot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1477">
+          <caret line="56" column="13" lean-forward="true" selection-start-line="56" selection-start-column="13" selection-end-line="56" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#21969#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Player180223545.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="5" column="16" lean-forward="true" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
+        <state relative-caret-position="199">
+          <caret line="213" lean-forward="true" selection-start-line="213" selection-end-line="213" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1412#1419#0" expanded="true" />
             <element signature="method#alpha_beta_min_max#0;class#Player180223545#0" />
-            <element signature="e#2126#2133#0" expanded="true" />
-            <element signature="e#3479#3486#0" expanded="true" />
-            <element signature="e#5067#5074#0" expanded="true" />
-            <element signature="method#calculate_score#0;class#Player180223545#0" />
+            <element signature="method#min#0;class#Player180223545#0" />
+            <element signature="method#max#0;class#Player180223545#0" />
+            <element signature="method#value_function#0;class#Player180223545#0" />
             <element signature="method#is_Game_Over#0;class#Player180223545#0" />
             <element signature="method#search_right#0;class#Player180223545#0" />
             <element signature="method#search_down#0;class#Player180223545#0" />

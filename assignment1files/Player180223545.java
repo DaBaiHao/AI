@@ -801,7 +801,7 @@ public class Player180223545 extends GomokuPlayer {
                 } else if (us_num_connect == 3) {
                     score_us += 100;
                 } else if (us_num_connect == 4) {
-                    score_us += 1000;
+                    score_us += 9999;
                 } else if (us_num_connect == 5) {
                     score_us += 100000000;
                 }
@@ -816,11 +816,11 @@ public class Player180223545 extends GomokuPlayer {
                  * 5 = 100000000
                  */
                 if (us_num_connect == 1) {
-                    score_us += 10;
+                    score_us += 1;
                 } else if (us_num_connect == 2) {
                     score_us += 100;
                 } else if (us_num_connect == 3) {
-                    score_us += 9999;
+                    score_us += 9900;
                 } else if (us_num_connect == 4) {
                     score_us += 10000;
                 } else if (us_num_connect == 5) {
