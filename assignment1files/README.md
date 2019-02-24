@@ -31,3 +31,6 @@ ID: 180223545</p>
        - 3 points got 9900
        - 4 points got 10099
        - 5 points got 100000000
+
+## Experiment:
+In experiment, the value function each points value get and the number of layers is modified. It is found that the increasing of the number of layers cause the bot more smart. But the complex layers will cause time out even using pruning method. Changing the value geting will influence the bot to choose points. For example, if the blocked 3 contiguous point value is set higher than the unblock one. The bot will perfer the blocked 3 contiguous point. And finally influence the probability of winning.
