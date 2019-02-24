@@ -1,11 +1,11 @@
-# BlphaGomoku
+### Gomoku Bot Report
 
 <p align="right">Name: Hao Bai<br/>
 ID: 180223545<br/>
 Version:  1.5.0
 </p>
 
-## Algorithm
+#### Algorithm
 1. This Gomoku bot is using the minmax search and alpha-beta pruning.
  - Search will find all available points on the board.
  - Firstly, try each available points, and calculate using minmax search and alpha-beta pruning. If the trying location can lead our win. This time move is this Point.
@@ -34,7 +34,7 @@ Version:  1.5.0
        - 4 points got 10099
        - 5 points got 100000000
 
-## Experiment:
+#### Experiment:
 In experiment, the value function each points value get and the number of layers is modified. It is found that the increasing of the number of layers cause the bot more smart. But the complex layers will cause time out even using pruning method. Changing the value geting will influence the bot to choose points. For example, if the blocked 3 contiguous point value is set higher than the unblock one. The bot will perfer the blocked 3 contiguous point. And finally influence the probability of winning.
  - Testing with random: 100% winning
  - Testing play with itself: The Nash equilibrium of a good bot need to reach draw. However, the 4 layers search sometime could not reach draw in self play. It might because when gathered point the bot might get higher value in other point not the key points.
@@ -42,4 +42,4 @@ In experiment, the value function each points value get and the number of layers
 
 
 ---
-#### More information will be posted on this bot github page: [BlphaGomoku](https://github.com/DaBaiHao/AI)
+###### More information will be posted on this bot github page: [BlphaGomoku](https://github.com/DaBaiHao/AI)
