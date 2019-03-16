@@ -39,7 +39,3 @@ In experiment, the value function each points value get and the number of layers
  - Testing with random: 100% winning
  - Testing play with itself: The Nash equilibrium of a good bot need to reach draw. However, the 4 layers search sometime could not reach draw in self play. It might because when gathered point the bot might get higher value in other point not the key points.
  - Testing with human: 40% winning. Unfortunately, as a human being, sometimes I can’t win.
-
-
----
-###### More information will be posted on this bot github page: [BlphaGomoku](https://github.com/DaBaiHao/AI)

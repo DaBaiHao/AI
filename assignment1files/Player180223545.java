@@ -792,6 +792,7 @@ public class Player180223545 extends GomokuPlayer {
 
 
         // int other_score = value_function(board, other);
+
         int return_value = score_us - score_other;
         return return_value;
 
