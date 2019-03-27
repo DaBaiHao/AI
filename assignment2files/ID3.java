@@ -102,24 +102,46 @@ class ID3 {
 	public void train(String[][] trainingData) {
 		indexStrings(trainingData);
 		// PUT  YOUR CODE HERE FOR TRAINING
-		// decisionTree = new TreeNode(attributes, stringCount);
-		System.out.print(attributes);
 
-		// 计算增益
-		for(int i = 0; i<attributes;i++){
-			int this_value_string_count = stringCount[i];
+		// init the tree
+		decisionTree = new TreeNode(null, 0);
 
-			for (int j = 0; j<this_value_string_count;j++){
-				int each_attributes = trainingData
+		// calculate
+
+		double totalEntropy = cal_Entropy(trainingData);
 
 
+	} // train()
+
+
+
+
+
+	double cal_Entropy(String[][] trainingData){
+		int rows = trainingData.length-1;
+		int target_index = attributes-1;
+		int[] classInstances = new int[stringCount[rows]];
+		for (int i = 0; i < stringCount[target_index]; i++) {
+			classInstances[i] = 0;
+			// calculate the last one
+			String value = strings[target_index][i];
+			for (int j = 1; j < trainingData.length; j++) {
+				if (trainingData[j][target_index].equals(value)) {
+					classInstances[i]++;
+				}
 			}
 
 		}
 
+		double entropy = 0;
+		for (int i = 0; i < classInstances.length; i++) {
+			entropy -= (xlogx(classInstances[i]/rows));
+		}
+
+		return Math.abs(entropy);
+	}
 
 
-	} // train()
 
 	/** Given a 2-dimensional array containing the training data, numbers each
 	 *  unique value that each attribute has, and stores these Strings in
@@ -192,7 +214,7 @@ class ID3 {
 			error("Expected 2 arguments: file names of training and test data");
 		String[][] trainingData = parseCSV(args[0]);
 		String[][] testData = parseCSV(args[1]);
-		System.out.println(testData);
+
 		ID3 classifier = new ID3();
 		classifier.train(trainingData);
 
