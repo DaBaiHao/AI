@@ -84,7 +84,7 @@ class ID3 {
 	} // error()
 
 	static final double LOG2 = Math.log(2.0);
-	
+
 	static double xlogx(double x) {
 		return x == 0? 0: x * Math.log(x) / LOG2;
 	} // xlogx()
@@ -106,42 +106,157 @@ class ID3 {
 		// init the tree
 		decisionTree = new TreeNode(null, 0);
 
-		// calculate
+		// calculate the class Entropy first
+		double class_totalEntropy = cal_Entropy_total(trainingData);
+		System.out.println(class_totalEntropy);
+		// reason attributes-1: already cal the last value
+		double[] arr_totalEntropy = new double[attributes-1];
+		for (int i = 0; i < attributes-1; i++) {
+			// double[] instanceCount = new double[stringCount[i]];
+			// double[] subSetEntropy = new double[stringCount[i]];
+			arr_totalEntropy[i] = class_totalEntropy - cal_Entropy_arr(trainingData,i);
 
-		double totalEntropy = cal_Entropy(trainingData);
+		}
 
+		int select_Index = getIndexOfLargest(arr_totalEntropy);
+
+		decisionTree.value = select_Index;
+		decisionTree.children = new TreeNode[stringCount[select_Index]];
+		int[] checked_rows = new int[attributes];
+		for (int i = 0;i < attributes;i++){
+			checked_rows[i] = 0;
+		}
+		checked_rows[select_Index] = 1;
+
+		for (int i = 0; i < stringCount[select_Index]; i++) {
+			decisionTree.children[i] = new TreeNode(null, 0);
+
+
+			String[][] each_sub = creat_sub(trainingData,select_Index,strings[select_Index][i]);
+
+			growTree(decisionTree.children[i], each_sub,checked_rows, class_totalEntropy);
+
+		}
+
+		//
 
 	} // train()
 
 
+	void growTree(TreeNode node, String[][] trainingData,int[] checked_rows,double class_totalEntropy){
+		// System.out.println("2");
+		double[] arr_totalEntropy = new double[attributes-1];
+		for (int i = 0; i < attributes-1; i++) {
+			// double[] instanceCount = new double[stringCount[i]];
+			// double[] subSetEntropy = new double[stringCount[i]];
+			// System.out.println(attributes-1);
+			arr_totalEntropy[i] = class_totalEntropy - cal_Entropy_arr(trainingData,i);
+
+		}
+
+	}
+
+	String[][] creat_sub(String[][] trainingData,int value_i,String value){
+		// String value = strings[value_i][value_j];
+		int counter = 0;
+		for (int i = 1; i < trainingData.length; i++) {
+			if (trainingData[i][value_i].equals(value)) {
+				counter++;
+			}
+		}
+		int rowCount = 1;
+		String[][] subSet = new String[counter+1][trainingData[0].length-1];
+		subSet[0] = trainingData[0];
+		for (int i = 1; i < subSet.length; i++) {
+			if (trainingData[i][value_i].equals(value)) {
+				subSet[rowCount] = trainingData[i];
+				rowCount++;
+			}
+		}
+		return subSet;
+
+	}
 
 
 
-	double cal_Entropy(String[][] trainingData){
-		int rows = trainingData.length-1;
-		int target_index = attributes-1;
-		int[] classInstances = new int[stringCount[rows]];
-		for (int i = 0; i < stringCount[target_index]; i++) {
-			classInstances[i] = 0;
-			// calculate the last one
-			String value = strings[target_index][i];
+	public double cal_Entropy_total(String[][] trainingData){
+		double rows = trainingData.length-1;
+		double[] count = new double[stringCount[attributes-1]];
+		for (int i = 0; i < stringCount[attributes-1]; i++) {
+			count[i] = 0;
+
 			for (int j = 1; j < trainingData.length; j++) {
-				if (trainingData[j][target_index].equals(value)) {
-					classInstances[i]++;
+				if(trainingData[j][attributes-1].equals(strings[attributes-1][i])){
+					count[i]++;
 				}
 			}
-
 		}
-
 		double entropy = 0;
-		for (int i = 0; i < classInstances.length; i++) {
-			entropy -= (xlogx(classInstances[i]/rows));
+		for (int i = 0; i < count.length; i++) {
+			entropy -= xlogx(count[i]/rows);
+			//System.out.println(count[i]);
 		}
+		// double a = 10/14;
+		// System.out.println(xlogx(a) + xlogx(4/14) );
 
 		return Math.abs(entropy);
 	}
 
 
+
+	double cal_Entropy_arr(String[][] trainingData, int index){
+		double rows = trainingData.length-1;
+		int target_index = index;
+		double arr_entropy_IG = 0;
+		for (int i = 0; i < stringCount[target_index]; i++) {
+			// sub arr is
+
+			double[] arr_class_count = new double[stringCount[trainingData[0].length-1]];
+			double total_arr_count = 0;
+			String value = strings[target_index][i];
+			for (int j = 1; j < trainingData.length; j++) {
+				for (int k = 0;k< stringCount[trainingData[0].length-1];k++){
+					int the_last_training_col = trainingData[0].length-1;
+					System.out.println("the_last_training_col     :   "+the_last_training_col);
+					System.out.println("j     :   "+j);
+					System.out.println("k     :   "+k);
+					System.out.println("target_index     :   "+target_index);
+
+					if (trainingData[j][the_last_training_col].equals(strings[the_last_training_col][k])&& trainingData[j][target_index].equals(value)) {
+						arr_class_count[k]++;
+						total_arr_count++;
+					}
+				}
+
+			}
+
+			double arr_entropy = 0;
+			for (int j = 0; j < arr_class_count.length; j++) {
+				arr_entropy -= (xlogx(arr_class_count[j]/total_arr_count));
+			}
+			arr_entropy = Math.abs(arr_entropy);
+
+			arr_entropy_IG += total_arr_count/rows * arr_entropy;
+
+
+		}
+		// System.out.println(arr_entropy_IG);
+		return arr_entropy_IG;
+	}
+
+
+
+	int getIndexOfLargest(double[] array)
+	{
+		if ( array == null || array.length == 0 ) return -1; // null or empty
+
+		int largest = 0;
+		for ( int i = 1; i < array.length; i++ )
+		{
+			if ( array[i] > array[largest] ) largest = i;
+		}
+		return largest; // position of the first largest found
+	}
 
 	/** Given a 2-dimensional array containing the training data, numbers each
 	 *  unique value that each attribute has, and stores these Strings in
