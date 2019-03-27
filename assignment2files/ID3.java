@@ -39,7 +39,7 @@ class ID3 {
 		public String toString() {
 			return toString("");
 		} // toString()
-		
+
 		String toString(String indent) {
 			if (children != null) {
 				String s = "";
@@ -60,6 +60,8 @@ class ID3 {
 	private String[][] data;	// Training data indexed by example, attribute
 	private String[][] strings; // Unique strings for each attribute
 	private int[] stringCount;  // Number of unique strings for each attribute
+	private int[] checked_rows;
+
 
 	public ID3() {
 		attributes = 0;
@@ -68,8 +70,9 @@ class ID3 {
 		data = null;
 		strings = null;
 		stringCount = null;
+		checked_rows = null;
 	} // constructor
-	
+
 	public void printTree() {
 		if (decisionTree == null)
 			error("Attempted to print null Tree");
@@ -96,8 +99,27 @@ class ID3 {
 		if (decisionTree == null)
 			error("Please run training phase before classification");
 		// PUT  YOUR CODE HERE FOR CLASSIFICATION
+		for(int i = 0; i < testData.length; i++){
+			classify_the_test(testData[i], decisionTree);
+		}
+
 
 	} // classify()
+
+	void classify_the_test(String[] testData_i, TreeNode decisionTree){
+		if(decisionTree.children == null){
+			System.out.println(strings[attributes-1][decisionTree.value]);
+			return;
+		}else {
+			int value = decisionTree.value;
+			for(int i = 0; i < decisionTree.children.length; i++){
+				if (strings[value][i].equals(strings[value][i])) {
+					classify_the_test(testData_i, decisionTree.children[i]);
+				}
+			}
+		}
+	}
+
 
 	public void train(String[][] trainingData) {
 		indexStrings(trainingData);
@@ -122,7 +144,7 @@ class ID3 {
 
 		decisionTree.value = select_Index;
 		decisionTree.children = new TreeNode[stringCount[select_Index]];
-		int[] checked_rows = new int[attributes];
+		checked_rows = new int[attributes];
 		for (int i = 0;i < attributes;i++){
 			checked_rows[i] = 0;
 		}
@@ -134,7 +156,7 @@ class ID3 {
 
 			String[][] each_sub = creat_sub(trainingData,select_Index,strings[select_Index][i]);
 
-			growTree(decisionTree.children[i], each_sub,checked_rows, class_totalEntropy);
+			decisionTree.children[i] = growTree(decisionTree.children[i], each_sub, class_totalEntropy);
 
 		}
 
@@ -143,16 +165,58 @@ class ID3 {
 	} // train()
 
 
-	void growTree(TreeNode node, String[][] trainingData,int[] checked_rows,double class_totalEntropy){
+	TreeNode growTree(TreeNode node, String[][] trainingData,double class_totalEntropy){
 		// System.out.println("2");
 		double[] arr_totalEntropy = new double[attributes-1];
 		for (int i = 0; i < attributes-1; i++) {
 			// double[] instanceCount = new double[stringCount[i]];
 			// double[] subSetEntropy = new double[stringCount[i]];
 			// System.out.println(attributes-1);
-			arr_totalEntropy[i] = class_totalEntropy - cal_Entropy_arr(trainingData,i);
+			if(checked_rows[i] == 0){
+				arr_totalEntropy[i] = class_totalEntropy - cal_Entropy_arr(trainingData,i);
+			}else {
+				arr_totalEntropy[i] = -100000.0;
+			}
+
 
 		}
+//		int rest_Count = 0;
+//		for (int i = 0; i < attributes-1; i++){
+//			if(checked_rows[i] == 0){
+//				rest_Count++;
+//			}
+//		}
+//		double[] arr_totalEntropy_not_check = new double[rest_Count];
+//		int count = 0;
+//		for (int i = 0; i < attributes-1; i++){
+//			if(checked_rows[i] == 0){
+//				arr_totalEntropy_not_check[count] = arr_totalEntropy[i];
+//			}
+//		}
+
+
+		int select_Index = getIndexOfLargest(arr_totalEntropy);
+
+		// if the arr not in the tree
+		if (checked_rows[select_Index] == 0){
+			node.value = select_Index;
+			node.children = new TreeNode[stringCount[select_Index]];
+			checked_rows[select_Index] = 1;
+
+			for (int i = 0; i < stringCount[select_Index]; i++) {
+				node.children[i] = new TreeNode(null, 0);
+				String[][] each_sub = creat_sub(trainingData,select_Index,strings[select_Index][i]);
+
+				node.children[i] = growTree(node.children[i], each_sub, class_totalEntropy);
+			}
+
+		}
+
+		return node;
+
+
+
+
 
 	}
 
@@ -167,7 +231,7 @@ class ID3 {
 		int rowCount = 1;
 		String[][] subSet = new String[counter+1][trainingData[0].length-1];
 		subSet[0] = trainingData[0];
-		for (int i = 1; i < subSet.length; i++) {
+		for (int i = 1; i < trainingData.length; i++) {
 			if (trainingData[i][value_i].equals(value)) {
 				subSet[rowCount] = trainingData[i];
 				rowCount++;
@@ -217,11 +281,12 @@ class ID3 {
 			for (int j = 1; j < trainingData.length; j++) {
 				for (int k = 0;k< stringCount[trainingData[0].length-1];k++){
 					int the_last_training_col = trainingData[0].length-1;
-					System.out.println("the_last_training_col     :   "+the_last_training_col);
-					System.out.println("j     :   "+j);
-					System.out.println("k     :   "+k);
-					System.out.println("target_index     :   "+target_index);
-
+					// System.out.println("the_last_training_col     :   "+the_last_training_col);
+					// System.out.println("j     :   "+j);
+					// System.out.println("k     :   "+k);
+					// System.out.println("target_index     :   "+target_index);
+					// System.out.println(trainingData[j].length);
+					String a = trainingData[j][the_last_training_col];
 					if (trainingData[j][the_last_training_col].equals(strings[the_last_training_col][k])&& trainingData[j][target_index].equals(value)) {
 						arr_class_count[k]++;
 						total_arr_count++;
@@ -291,15 +356,15 @@ class ID3 {
 		for (int attr = 0; attr < attributes; attr++)
 			for (int index = 0; index < stringCount[attr]; index++)
 				System.out.println(data[0][attr] + " value " + index +
-									" = " + strings[attr][index]);
+						" = " + strings[attr][index]);
 	} // printStrings()
-		
+
 	/** Reads a text file containing a fixed number of comma-separated values
 	 *  on each line, and returns a two dimensional array of these values,
 	 *  indexed by line number and position in line.
 	 **/
 	static String[][] parseCSV(String fileName)
-								throws FileNotFoundException, IOException {
+			throws FileNotFoundException, IOException {
 		BufferedReader br = new BufferedReader(new FileReader(fileName));
 		String s = br.readLine();
 		int fields = 1;
@@ -324,7 +389,7 @@ class ID3 {
 	} // parseCSV()
 
 	public static void main(String[] args) throws FileNotFoundException,
-												  IOException {
+			IOException {
 		if (args.length != 2)
 			error("Expected 2 arguments: file names of training and test data");
 		String[][] trainingData = parseCSV(args[0]);
