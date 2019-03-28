@@ -1,6 +1,10 @@
 
 // ECS629/759 Assignment 2 - ID3 Skeleton Code
 // Author: Simon Dixon
+// completed by: Hao Bai - 180223545
+// Anyone who use this code, please cite
+
+
 
 import java.io.File;
 import java.io.FileReader;
@@ -107,6 +111,11 @@ class ID3 {
 
 	} // classify()
 
+	/**
+	 * classify the test data
+	 * @param testData_i the number i test data
+	 * @param decisionTree the tree
+	 */
 	void classify_the_test(String[] testData_i, TreeNode decisionTree){
 		if(decisionTree.children == null){
 			System.out.println(strings[attributes-1][decisionTree.value]);
@@ -114,12 +123,13 @@ class ID3 {
 		}else {
 			int value = decisionTree.value;
 			for(int i = 0; i < decisionTree.children.length; i++){
-				if (strings[value][i].equals(strings[value][i])) {
+				if (testData_i[value].equals(strings[value][i])) {
 					classify_the_test(testData_i, decisionTree.children[i]);
 				}
 			}
 		}
 	}
+
 
 
 	public void train(String[][] trainingData) {
@@ -131,33 +141,41 @@ class ID3 {
 
 		// calculate the class Entropy first
 		double class_totalEntropy = cal_Entropy_total(trainingData);
-		System.out.println(class_totalEntropy);
+
 		// reason attributes-1: already cal the last value
+		// calculate
 		double[] arr_totalEntropy = new double[attributes-1];
+		// calculate each attribute
 		for (int i = 0; i < attributes-1; i++) {
-			// double[] instanceCount = new double[stringCount[i]];
-			// double[] subSetEntropy = new double[stringCount[i]];
 			arr_totalEntropy[i] = class_totalEntropy - cal_Entropy_arr(trainingData,i);
-
 		}
-
+		// the max one index
 		int select_Index = getIndexOfLargest(arr_totalEntropy);
 
+		// upate the tree
 		decisionTree.value = select_Index;
+		// create the num tree node based on the num of the best arr how many string
 		decisionTree.children = new TreeNode[stringCount[select_Index]];
+		// checked rows is how many arr have been checked
 		checked_rows = new int[attributes];
+		// init the array
 		for (int i = 0;i < attributes;i++){
+			// not check is 0
 			checked_rows[i] = 0;
 		}
+		// checked the best arr is 1
 		checked_rows[select_Index] = 1;
 
+		// put trees in each  chirdren
 		for (int i = 0; i < stringCount[select_Index]; i++) {
+			// put trees in each  chirdren
 			decisionTree.children[i] = new TreeNode(null, 0);
 
-
+			// create a new table
 			String[][] each_sub = creat_sub(trainingData,select_Index,strings[select_Index][i]);
 
-			decisionTree.children[i] = growTree(decisionTree.children[i], each_sub,select_Index);
+			// grow tree
+			decisionTree.children[i] = growTree(decisionTree.children[i], each_sub);
 
 		}
 
@@ -166,30 +184,45 @@ class ID3 {
 	} // train()
 
 
-	TreeNode growTree(TreeNode node, String[][] trainingData, int select_Index_pre){
-		// System.out.println("2");
+	/**
+	 * This method is to return a subTree of the tree node
+	 *
+	 * @param node
+	 * @param trainingData
+	 * @return
+	 */
+	TreeNode growTree(TreeNode node, String[][] trainingData){
+
+		/**
+		 * calculate Entropy of the table
+		 */
+		// totll Entropy
 		double[] arr_totalEntropy = new double[attributes-1];
 		double class_totalEntropy = cal_Entropy_total(trainingData);
+		// find the max of the table
 		for (int i = 0; i < attributes-1; i++) {
-			// double[] instanceCount = new double[stringCount[i]];
-			// double[] subSetEntropy = new double[stringCount[i]];
-			// System.out.println(attributes-1);
+			//  check if some arr already checked
 			if(checked_rows[i] == 0){
-
 				arr_totalEntropy[i] = class_totalEntropy - cal_Entropy_arr(trainingData,i);
 			}else {
 				arr_totalEntropy[i] = -100000.0;
 			}
 
-
 		}
+
+
+		/**
+		 * if the totalEntropy is 0, because log2 1 is 0,means the last colums is all same value
+		 * which means this node done
+		 *
+		 */
 		if(class_totalEntropy == 0.0){
 
-			// node.children = null;
-
+			// give the value to the leaf class, from the last one
 			int leafClass = 0;
 			int instances = 0;
 			for (int i = 0; i < stringCount[attributes-1]; i++) {
+				// count how many arr
 				int counter = 0;
 				String value = strings[trainingData[0].length-1][i];
 				if (trainingData.length == 1) {
@@ -200,7 +233,7 @@ class ID3 {
 						counter++;
 					}
 				}
-
+				// count the last one
 				if (instances < counter) {
 					instances = counter;
 					leafClass = i;
@@ -223,23 +256,26 @@ class ID3 {
 //			}
 //		}
 
-
+		// if not done, get the best Entropy
 		int select_Index = getIndexOfLargest(arr_totalEntropy);
 
 		// if the arr not in the tree
 		if (checked_rows[select_Index] == 0){
+			// create a new tree node
 			node.value = select_Index;
 			node.children = new TreeNode[stringCount[select_Index]];
 			checked_rows[select_Index] = 1;
 
+			// check all of the arr
 			for (int i = 0; i < stringCount[select_Index]; i++) {
 				node.children[i] = new TreeNode(null, 0);
 				String[][] each_sub = creat_sub(trainingData,select_Index,strings[select_Index][i]);
 
-				node.children[i] = growTree(node.children[i], each_sub,select_Index);
+				node.children[i] = growTree(node.children[i], each_sub);
 			}
 
 		}
+
 
 		return node;
 
@@ -250,7 +286,13 @@ class ID3 {
 	}
 
 
-
+	/**
+	 * Create a the sub class
+	 * @param trainingData
+	 * @param value_i
+	 * @param value
+	 * @return
+	 */
 	String[][] creat_sub(String[][] trainingData,int value_i,String value){
 		// String value = strings[value_i][value_j];
 		int counter = 0;
@@ -273,7 +315,11 @@ class ID3 {
 	}
 
 
-
+	/**
+	 * calculate tbe total Entropy of the
+	 * @param trainingData
+	 * @return
+	 */
 	public double cal_Entropy_total(String[][] trainingData){
 		double rows = trainingData.length-1;
 		double[] count = new double[stringCount[attributes-1]];
@@ -298,7 +344,12 @@ class ID3 {
 	}
 
 
-
+	/**
+	 * calculate each attribute Entropy
+	 * @param trainingData
+	 * @param index
+	 * @return
+	 */
 	double cal_Entropy_arr(String[][] trainingData, int index){
 		double rows = trainingData.length-1;
 		int target_index = index;
@@ -341,7 +392,11 @@ class ID3 {
 	}
 
 
-
+	/**
+	 * get the max value of a array
+	 * @param array
+	 * @return
+	 */
 	int getIndexOfLargest(double[] array)
 	{
 		if ( array == null || array.length == 0 ) return -1; // null or empty
