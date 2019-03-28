@@ -1,3 +1,4 @@
+
 // ECS629/759 Assignment 2 - ID3 Skeleton Code
 // Author: Simon Dixon
 
@@ -156,7 +157,7 @@ class ID3 {
 
 			String[][] each_sub = creat_sub(trainingData,select_Index,strings[select_Index][i]);
 
-			decisionTree.children[i] = growTree(decisionTree.children[i], each_sub, class_totalEntropy);
+			decisionTree.children[i] = growTree(decisionTree.children[i], each_sub,select_Index);
 
 		}
 
@@ -165,20 +166,48 @@ class ID3 {
 	} // train()
 
 
-	TreeNode growTree(TreeNode node, String[][] trainingData,double class_totalEntropy){
+	TreeNode growTree(TreeNode node, String[][] trainingData, int select_Index_pre){
 		// System.out.println("2");
 		double[] arr_totalEntropy = new double[attributes-1];
+		double class_totalEntropy = cal_Entropy_total(trainingData);
 		for (int i = 0; i < attributes-1; i++) {
 			// double[] instanceCount = new double[stringCount[i]];
 			// double[] subSetEntropy = new double[stringCount[i]];
 			// System.out.println(attributes-1);
 			if(checked_rows[i] == 0){
+
 				arr_totalEntropy[i] = class_totalEntropy - cal_Entropy_arr(trainingData,i);
 			}else {
 				arr_totalEntropy[i] = -100000.0;
 			}
 
 
+		}
+		if(class_totalEntropy == 0.0){
+
+			// node.children = null;
+
+			int leafClass = 0;
+			int instances = 0;
+			for (int i = 0; i < stringCount[attributes-1]; i++) {
+				int counter = 0;
+				String value = strings[trainingData[0].length-1][i];
+				if (trainingData.length == 1) {
+					// return counter;
+				}
+				for (int j = 1; j < trainingData.length; j++) {
+					if (trainingData[j][trainingData[0].length-1].equals(value)) {
+						counter++;
+					}
+				}
+
+				if (instances < counter) {
+					instances = counter;
+					leafClass = i;
+				}
+			}
+			node.value = leafClass;
+			return node;
 		}
 //		int rest_Count = 0;
 //		for (int i = 0; i < attributes-1; i++){
@@ -207,7 +236,7 @@ class ID3 {
 				node.children[i] = new TreeNode(null, 0);
 				String[][] each_sub = creat_sub(trainingData,select_Index,strings[select_Index][i]);
 
-				node.children[i] = growTree(node.children[i], each_sub, class_totalEntropy);
+				node.children[i] = growTree(node.children[i], each_sub,select_Index);
 			}
 
 		}
@@ -219,6 +248,8 @@ class ID3 {
 
 
 	}
+
+
 
 	String[][] creat_sub(String[][] trainingData,int value_i,String value){
 		// String value = strings[value_i][value_j];
@@ -261,7 +292,7 @@ class ID3 {
 			//System.out.println(count[i]);
 		}
 		// double a = 10/14;
-		// System.out.println(xlogx(a) + xlogx(4/14) );
+		// System.out.println(entropy );
 
 		return Math.abs(entropy);
 	}
