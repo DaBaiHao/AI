@@ -43,5 +43,4 @@ In experiment, the value function each points value get and the number of layers
 
 
 
-#### ass2
-https://blog.csdn.net/u012897374/article/details/74505024
+
